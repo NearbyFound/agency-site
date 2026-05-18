@@ -7,6 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -135,7 +137,10 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 .fsub{width:100%;background:var(--blue);color:white;border:none;padding:12px;border-radius:var(--rs);font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:7px}
 .fsub:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 6px 18px rgba(26,107,245,.28)}
 .fnote{text-align:center;font-size:11px;color:var(--muted);margin-top:9px;display:flex;align-items:center;justify-content:center;gap:4px}
-
+.toast-msg{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#0F1623;color:white;padding:12px 24px;border-radius:40px;font-size:13px;font-weight:500;z-index:1000;box-shadow:0 8px 20px rgba(0,0,0,0.2);opacity:0;transition:opacity 0.2s;pointer-events:none;}
+.toast-msg.show{opacity:1;}
+.toast-msg.error{background:#dc2626;}
+.toast-msg.success{background:#16A34A;}
 /* ── STATS ── */
 .stats{background:var(--text);padding:44px 5%}
 .stats-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center}
@@ -241,7 +246,6 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 .price-period{font-size:12px;color:var(--muted);margin-bottom:6px}
 .price-free-note{font-size:12px;color:var(--green);font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:5px}
 .price-free-note svg{width:13px;height:13px;stroke:var(--green);fill:none;stroke-width:2.5}
-/* ROI line */
 .price-roi{font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-light);padding:6px 10px;border-radius:7px;margin-bottom:14px;display:flex;align-items:center;gap:5px}
 .price-roi svg{width:12px;height:12px;stroke:var(--blue);fill:none;stroke-width:2.5;flex-shrink:0}
 .price-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid var(--border)}
@@ -253,7 +257,6 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 .price-btn:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 6px 18px rgba(26,107,245,.28)}
 .price-btn.outline{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
 .price-btn.outline:hover{background:var(--blue);color:white}
-/* recommended label for Growth */
 .rec-label{font-size:11px;color:rgba(26,107,245,.8);font-weight:600;text-align:center;margin-top:10px}
 
 /* ── FINAL CTA ── */
@@ -308,411 +311,143 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
 </style>
 </head>
 <body>
+<div class="ann"><span class="ann-tag" data-i18n="ann_tag">New</span><span data-i18n="ann_text">Try us free for 1 week. You only pay when you see real results.</span></div>
+<nav><a href="#" class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>NearbyFound</a><ul class="nav-links"><li><a href="#services" data-i18n="nav_sv">Services</a></li><li><a href="#guarantee" data-i18n="nav_guar">Our Guarantee</a></li><li><a href="#pricing" data-i18n="nav_price">Pricing</a></li><li><a href="#process" data-i18n="nav_how">How It Works</a></li></ul><div class="nav-right"><div class="lang-sw"><button class="lb active" onclick="setLang('en')">EN</button><button class="lb" onclick="setLang('nl')">NL</button><button class="lb" onclick="setLang('fr')">FR</button></div><button class="nav-btn" onclick="smoothScrollTo('audit')" data-i18n="nav_cta">Start Free Week</button></div></nav>
 
-<div class="ann">
-  <span class="ann-tag" data-i18n="ann_tag">New</span>
-  <span data-i18n="ann_text">Try us free for 1 week. You only pay when you see real results.</span>
-</div>
+<div class="hero-wrap"><div class="hero"><div><div class="badge reveal"><span class="bdot"></span><span data-i18n="hero_badge">Google Business Profile Specialists</span></div><h1 class="reveal d1" data-i18n="hero_h1">Get Found First.<br>Get More Calls. <em>Today.</em></h1><p class="hero-sub reveal d2" data-i18n="hero_sub">We optimise your Google Business Profile so local customers find you before your competitors and choose you first.</p><div class="offer-pill reveal d3"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="hero_pill">1 week completely free. Pay only once you see results.</span></div><div class="hero-actions reveal d4"><button class="btn-p" onclick="smoothScrollTo('audit')"><span data-i18n="hero_cta1">Start My Free Week</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button><button class="btn-o" onclick="smoothScrollTo('guarantee')" data-i18n="hero_cta2">See the Guarantee</button></div><div class="trust reveal d5"><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="trust-txt"><strong data-i18n="trust_strong">Zero risk. Zero upfront cost.</strong><span data-i18n="trust_sub">We prove it works before you spend a penny.</span></div></div></div><div class="visual reveal-scale d2"><div class="chip chip-1"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><span data-i18n="chip1">More calls within days</span></div><div class="chip chip-2"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span data-i18n="chip2">Ranking above competitors</span></div><div class="results-card"><div class="g-bar"><div class="g-logo"><span class="g-b">G</span><span class="g-r">o</span><span class="g-y">o</span><span class="g-b">g</span><span class="g-g">l</span><span class="g-r">e</span></div><div class="g-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span data-i18n="search_q">plumber near me</span></div></div><div class="map-pack"><div class="map-mini"><div class="rd r1"></div><div class="rd r2"></div><div class="rd r3"></div><div class="rd r4"></div><div class="pin p1"><div class="pb" data-i18n="pin_you">You</div></div><div class="pin p2"><div class="pb">#2</div></div><div class="pin p3"><div class="pb">#3</div></div></div><div class="map-results"><div class="mr"><div class="mr-num bl">1</div><div class="mr-info"><div class="mr-name"><span data-i18n="biz_you">Your Business</span><span class="mr-tag" data-i18n="biz_tag">Optimised</span></div><div class="mr-meta"><span class="mr-stars">★★★★★</span> 5.0 · <span data-i18n="biz_open">Open now</span></div></div></div><div class="mr"><div class="mr-num gr">2</div><div class="mr-info"><div class="mr-name" data-i18n="comp1">Competitor A</div><div class="mr-meta"><span class="mr-stars" style="color:#94A3B8">★★★★☆</span> 4.1</div></div></div><div class="mr"><div class="mr-num gr">3</div><div class="mr-info"><div class="mr-name" data-i18n="comp2">Competitor B</div><div class="mr-meta"><span class="mr-stars" style="color:#94A3B8">★★★☆☆</span> 3.7</div></div></div></div></div><div class="organic"><div class="org-label" data-i18n="org_label">Organic Results</div><div class="org-result"><div class="org-url" data-i18n="org_url1">yourbusiness.com</div><div class="org-title" data-i18n="org_title1">Your Business — Trusted Local Plumber</div><div class="org-desc" data-i18n="org_desc1">Serving your area for years. <strong>Fast response</strong>, fully insured, 5-star rated.</div></div><div class="org-result"><div class="org-url" data-i18n="org_url2">competitor-a.com</div><div class="org-title" data-i18n="org_title2">Competitor A Plumbing Services</div><div class="org-desc" data-i18n="org_desc2">General plumbing services in the local area.</div></div></div></div>
 
-<nav>
-  <a href="#" class="logo">
-    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-    NearbyFound
-  </a>
-  <ul class="nav-links">
-    <li><a href="#services" data-i18n="nav_sv">Services</a></li>
-    <li><a href="#guarantee" data-i18n="nav_guar">Our Guarantee</a></li>
-    <li><a href="#pricing" data-i18n="nav_price">Pricing</a></li>
-    <li><a href="#process" data-i18n="nav_how">How It Works</a></li>
-  </ul>
-  <div class="nav-right">
-    <div class="lang-sw">
-      <button class="lb active" onclick="setLang('en')">EN</button>
-      <button class="lb" onclick="setLang('nl')">NL</button>
-      <button class="lb" onclick="setLang('fr')">FR</button>
-    </div>
-    <button class="nav-btn" onclick="smoothScrollTo('audit')" data-i18n="nav_cta">Start Free Week</button>
-  </div>
-</nav>
+<div class="form-card" id="audit"><h3 data-i18n="form_h">Start Your Free Week</h3><p data-i18n="form_sub">No card needed. We get to work, you watch the results come in.</p>
+<form id="emailjs-form">
+  <div class="fg"><label data-i18n="fl_biz">Business Name</label><input type="text" name="business_name" required data-ph="fp_biz" placeholder="e.g. Smith's Plumbing Ltd"></div>
+  <div class="fg"><label data-i18n="fl_name">Your Name</label><input type="text" name="name" required data-ph="fp_name" placeholder="First and last name"></div>
+  <div class="fg"><label data-i18n="fl_phone">Phone</label><input type="tel" name="phone" required placeholder="+44 7700 000 000"></div>
+  <div class="fg"><label data-i18n="fl_email">Email</label><input type="email" name="email" required data-ph="fp_email" placeholder="you@yourbusiness.com"></div>
+  <div class="fg"><label data-i18n="fl_ind">Industry</label><select name="industry" required><option value="">Select your industry...</option><option>Trades &amp; Construction</option><option>Health &amp; Beauty</option><option>Food &amp; Hospitality</option><option>Retail</option><option>Professional Services</option><option>Other</option></select></div>
+  <button type="submit" class="fsub"><span data-i18n="form_btn">Claim My Free Week</span></button>
+</form>
+<p class="fnote"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span data-i18n="form_note">No obligation. We'll be in touch within 24 hours.</span></p></div></div></div></div>
 
-<!-- ═══ HERO ═══ -->
-<div class="hero-wrap">
-  <div class="hero">
-    <div>
-      <div class="badge reveal"><span class="bdot"></span><span data-i18n="hero_badge">Google Business Profile Specialists</span></div>
-      <h1 class="reveal d1" data-i18n="hero_h1">Get Found First.<br>Get More Calls. <em>Today.</em></h1>
-      <p class="hero-sub reveal d2" data-i18n="hero_sub">We optimise your Google Business Profile so local customers find you before your competitors and choose you first.</p>
-      <div class="offer-pill reveal d3">
-        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-        <span data-i18n="hero_pill">1 week completely free. Pay only once you see results.</span>
-      </div>
-      <div class="hero-actions reveal d4">
-        <button class="btn-p" onclick="smoothScrollTo('audit')">
-          <span data-i18n="hero_cta1">Start My Free Week</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-        <button class="btn-o" onclick="smoothScrollTo('guarantee')" data-i18n="hero_cta2">See the Guarantee</button>
-      </div>
-      <div class="trust reveal d5">
-        <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <div class="trust-txt">
-          <strong data-i18n="trust_strong">Zero risk. Zero upfront cost.</strong>
-          <span data-i18n="trust_sub">We prove it works before you spend a penny.</span>
-        </div>
-      </div>
-    </div>
+<div class="live-counter-wrap"><div class="live-counter-inner"><div class="lc-item"><div class="lc-dot"></div><div class="lc-text">Free 7-day optimisation trial</div></div><div class="lc-divider"></div><div class="lc-item"><div class="lc-dot"></div><div class="lc-text">No setup fee • No credit card required</div></div><div class="lc-divider"></div><div class="lc-item"><div class="lc-dot"></div><div class="lc-text">Pay only after results</div></div></div></div>
 
-    <div class="visual reveal-scale d2">
-      <div class="chip chip-1">
-        <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-        <span data-i18n="chip1">More calls within days</span>
-      </div>
-      <div class="chip chip-2">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <span data-i18n="chip2">Ranking above competitors</span>
-      </div>
+<div class="stats"><div class="stats-in"><div class="reveal"><div class="sn">7 Days</div><div class="sl" data-i18n="s2">To See First Results</div></div><div class="reveal d1"><div class="sn">100%</div><div class="sl" data-i18n="s3">Results Guarantee</div></div><div class="reveal d2"><div class="sn">3×</div><div class="sl" data-i18n="s4">Typical Lead Increase</div></div></div></div>
 
-      <div class="results-card">
-        <div class="g-bar">
-          <div class="g-logo"><span class="g-b">G</span><span class="g-r">o</span><span class="g-y">o</span><span class="g-b">g</span><span class="g-g">l</span><span class="g-r">e</span></div>
-          <div class="g-search">
-            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <span data-i18n="search_q">plumber near me</span>
-          </div>
-        </div>
-        <div class="map-pack">
-          <div class="map-mini">
-            <div class="rd r1"></div><div class="rd r2"></div><div class="rd r3"></div><div class="rd r4"></div>
-            <div class="pin p1"><div class="pb" data-i18n="pin_you">You</div></div>
-            <div class="pin p2"><div class="pb">#2</div></div>
-            <div class="pin p3"><div class="pb">#3</div></div>
-          </div>
-          <div class="map-results">
-            <div class="mr">
-              <div class="mr-num bl">1</div>
-              <div class="mr-info">
-                <div class="mr-name"><span data-i18n="biz_you">Your Business</span><span class="mr-tag" data-i18n="biz_tag">Optimised</span></div>
-                <div class="mr-meta"><span class="mr-stars">★★★★★</span> 5.0 · <span data-i18n="biz_open">Open now</span></div>
-              </div>
-            </div>
-            <div class="mr">
-              <div class="mr-num gr">2</div>
-              <div class="mr-info"><div class="mr-name" data-i18n="comp1">Competitor A</div><div class="mr-meta"><span class="mr-stars" style="color:#94A3B8">★★★★☆</span> 4.1</div></div>
-            </div>
-            <div class="mr">
-              <div class="mr-num gr">3</div>
-              <div class="mr-info"><div class="mr-name" data-i18n="comp2">Competitor B</div><div class="mr-meta"><span class="mr-stars" style="color:#94A3B8">★★★☆☆</span> 3.7</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="organic">
-          <div class="org-label" data-i18n="org_label">Organic Results</div>
-          <div class="org-result">
-            <div class="org-url" data-i18n="org_url1">yourbusiness.com</div>
-            <div class="org-title" data-i18n="org_title1">Your Business — Trusted Local Plumber</div>
-            <div class="org-desc" data-i18n="org_desc1">Serving your area for years. <strong>Fast response</strong>, fully insured, 5-star rated.</div>
-          </div>
-          <div class="org-result">
-            <div class="org-url" data-i18n="org_url2">competitor-a.com</div>
-            <div class="org-title" data-i18n="org_title2">Competitor A Plumbing Services</div>
-            <div class="org-desc" data-i18n="org_desc2">General plumbing services in the local area.</div>
-          </div>
-        </div>
-      </div>
+<div class="bridge"><div class="bridge-inner"><div class="bridge-grid"><div><span class="bridge-label reveal" data-i18n="br_tag">The System</span><h2 class="reveal d1" data-i18n="br_h">This isn't SEO hope.<br>It's a <em>repeatable result.</em></h2><p class="bridge-sub reveal d2" data-i18n="br_sub">Every business we work with goes through the same proven sequence. The outcomes aren't luck — they're the output of a process built around exactly how Google's local algorithm works.</p><div class="outcome-list"><div class="outcome-item reveal d2"><div class="oi-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="none" fill="#1A6BF5"/></svg></div><div class="oi-body"><h4 data-i18n="br_o1h">Visibility rises fast</h4><p data-i18n="br_o1p">Profile signals are updated within 24 hours. Most clients see movement in ranking within the first week.</p></div></div><div class="outcome-item reveal d3"><div class="oi-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="oi-body"><h4 data-i18n="br_o2h">Calls increase measurably</h4><p data-i18n="br_o2p">Our average client sees 15–40 additional inbound calls per month by the end of week 4.</p></div></div><div class="outcome-item reveal d4"><div class="oi-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="oi-body"><h4 data-i18n="br_o3h">Reviews compound over time</h4><p data-i18n="br_o3p">A steady review system means your reputation keeps growing every single month without extra effort from you.</p></div></div></div></div><div class="timeline-visual reveal-scale d2"><div class="tl-card"><div class="tl-header"><h4 data-i18n="tl_h">What happens after you sign up</h4><p data-i18n="tl_sub">A typical client journey</p></div><div class="tl-body"><div class="tl-row"><div class="tl-circle done"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div><div class="tl-info"><div class="tl-day" data-i18n="tl_d1">Day 1</div><p data-i18n="tl_p1">Free audit completed</p><span data-i18n="tl_s1">We review your full profile & send findings</span></div></div><div class="tl-row"><div class="tl-circle done"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div><div class="tl-info"><div class="tl-day" data-i18n="tl_d2">Day 2–3</div><p data-i18n="tl_p2">Full optimisation goes live</p><span data-i18n="tl_s2">Categories, photos, posts, descriptions — all done</span></div></div><div class="tl-row"><div class="tl-circle done"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div><div class="tl-info"><div class="tl-day" data-i18n="tl_d3">Day 5–7</div><p data-i18n="tl_p3">You start seeing movement</p><span data-i18n="tl_s3">Ranking shifts, more profile views, first extra calls</span></div></div><div class="tl-row"><div class="tl-circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg></div><div class="tl-info"><div class="tl-day" data-i18n="tl_d4">Week 2+</div><p data-i18n="tl_p4">Subscription starts (your choice)</p><span data-i18n="tl_s4">Only if results are there — you decide</span></div></div></div></div></div></div></div></div>
 
-      <div class="form-card" id="audit">
-  <h3 data-i18n="form_h">Start Your Free Week</h3>
-  <p data-i18n="form_sub">No card needed. We get to work, you watch the results come in.</p>
+<div class="guar-wrap" id="guarantee"><div class="guar-inner"><div class="g-kicker reveal"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span data-i18n="g_kicker">Risk-Free Guarantee</span></div><h2 class="reveal d1" data-i18n="g_h2">Try It Free. Pay Only<br>When You See <em>Results.</em></h2><p class="g-sub reveal d2" data-i18n="g_sub">We optimise your profile for a full week at zero cost. No results after that? We keep going, free of charge, until you do. You only pay once it's working.</p><div class="gbox reveal d3"><div class="gseal"><div class="gs-big" data-i18n="seal_n">100%</div><div class="gs-sm" data-i18n="seal_t">Results<br>Guarantee</div></div><div class="gtext"><h3 data-i18n="g_box_h">You cannot lose.</h3><p data-i18n="g_box_p">We start for <strong>free</strong>. If you don't see more calls, more visibility, and a better ranking in week 1, we keep working at <strong>no charge</strong> until you do. Your subscription only starts the week your results arrive. <strong>No results means no payment. Full stop.</strong></p></div></div><button class="btn-gold reveal d4" onclick="smoothScrollTo('audit')"><span data-i18n="g_btn">Start My Free Week</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button><p class="gmicro reveal d5" data-i18n="g_micro">No credit card. No contract. Cancel anytime.</p></div></div>
 
-  <form action="https://formsubmit.co/hello@nearbyfound.com" method="POST">
+<section class="sec" id="services"><span class="stag reveal" data-i18n="sv_tag">What We Do</span><h2 class="stitle reveal d1" data-i18n="sv_h">Everything Your Profile Needs to Rank</h2><p class="ssub reveal d2" data-i18n="sv_sub">We take care of your entire Google presence so you can focus on running your business.</p><div class="sgrid"><div class="sc reveal d1"><div class="si"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="none" fill="#1A6BF5"/></svg></div><h4 data-i18n="s1h">Profile Optimisation</h4><p data-i18n="s1p">Every section rebuilt to exactly what Google rewards. Categories, descriptions, service areas and attributes all dialled in.</p></div><div class="sc reveal d2"><div class="si"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h4 data-i18n="s2h">Review Strategy</h4><p data-i18n="s2p">A simple system that brings in more 5-star reviews consistently, building your reputation while you focus on the job.</p></div><div class="sc reveal d3"><div class="si"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><h4 data-i18n="s3h">Map Pack Ranking</h4><p data-i18n="s3p">The local map pack captures the majority of local clicks. We work to place you in the top 3 using proven local SEO methods.</p></div><div class="sc reveal d4"><div class="si"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><h4 data-i18n="s4h">Photo Optimisation</h4><p data-i18n="s4p">The right photos in the right places make a real difference. We handle geotagging, scheduling, and presentation.</p></div><div class="sc reveal d5"><div class="si"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><h4 data-i18n="s5h">Weekly Posts</h4><p data-i18n="s5p">Keeps your profile fresh and active. Written and published for you every week without you lifting a finger.</p></div><div class="sc reveal d6"><div class="si"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><h4 data-i18n="s6h">Monthly Reports</h4><p data-i18n="s6p">Straightforward reports showing your calls, views, and ranking progress each month. No jargon, just the numbers that matter.</p></div></div></section>
 
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_subject" value="New Free Week Claim">
-    <input type="hidden" name="_autoresponse" value="Thanks for claiming your free week with NearbyFound. We've received your information and will contact you within 24 hours.">
+<div class="proc-bg" id="process"><section class="sec"><span class="stag reveal" data-i18n="pr_tag">How It Works</span><h2 class="stitle reveal d1" data-i18n="pr_h">Simple. Fast. Risk-Free.</h2><p class="ssub reveal d2" data-i18n="pr_sub">Four steps and you're live. No technical knowledge needed from your side.</p><div class="pgrid"><div class="pstep reveal d1"><div class="pn">1</div><h4 data-i18n="p1h">Free Audit</h4><p data-i18n="p1p">We review your current profile and show you exactly what's holding you back. No cost, no strings attached.</p></div><div class="pstep reveal d2"><div class="pn">2</div><h4 data-i18n="p2h">Quick Call</h4><p data-i18n="p2p">A short 30-minute call to go through the findings and agree on the best plan for your business.</p></div><div class="pstep reveal d3"><div class="pn">3</div><h4 data-i18n="p3h">We Get to Work</h4><p data-i18n="p3p">Your profile is fully optimised during week 1 at no charge. We handle everything from start to finish.</p></div><div class="pstep reveal d4"><div class="pn">4</div><h4 data-i18n="p4h">Results First, Then Pay</h4><p data-i18n="p4p">Your subscription only begins the week you start seeing results. Not a day before.</p></div></div></section></div>
 
-    <div class="fg">
-      <label data-i18n="fl_biz">Business Name</label>
-      <input type="text" name="business_name" required data-ph="fp_biz" placeholder="e.g. Smith's Plumbing Ltd">
-    </div>
+<section class="sec" id="pricing"><span class="stag reveal" data-i18n="pr2_tag">Pricing</span><h2 class="stitle reveal d1" data-i18n="pr2_h">Simple, Transparent Pricing</h2><p class="ssub reveal d2" data-i18n="pr2_sub">All plans start with a free week. Pick the level that suits your goals.</p><div class="price-grid"><div class="price-card reveal d1"><div class="price-tier" data-i18n="pt1">Starter</div><div class="price-amount"><span class="currency-sym">$</span>199<span data-i18n="p_mo">/mo</span></div><div class="price-period" data-i18n="p_after">after your free week</div><div class="price-free-note"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="p_free_note">First week always free</span></div><div class="price-roi"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><span data-i18n="roi1">Typically generates +15–25 extra calls/month</span></div><div class="price-desc" data-i18n="pd1">The essentials to get your profile found and generating calls. Perfect for getting started.</div><ul class="price-features"><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf1_1">Full profile optimisation</span></li><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf1_2">Photo strategy</span></li><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf1_3">2 Google posts per month</span></li><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf1_4">Monthly performance report</span></li><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf1_5">Email support</span></li></ul><button class="price-btn outline" onclick="smoothScrollTo('audit')" data-i18n="p_start">Start Free Week</button></div><div class="price-card featured reveal d2"><div class="price-badge" data-i18n="p_popular">Most Popular</div><div class="price-tier blue" data-i18n="pt2">Growth</div><div class="price-amount"><span class="currency-sym">$</span>349<span data-i18n="p_mo">/mo</span></div><div class="price-period" data-i18n="p_after">after your free week</div><div class="price-free-note"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="p_free_note">First week always free</span></div><div class="price-roi"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><span data-i18n="roi2">Designed for growing local businesses</span></div><div class="price-desc" data-i18n="pd2">More content, more reviews, more visibility. For businesses serious about being the go-to in their area.</div><ul class="price-features"><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf2_1">Everything in Starter</span></li><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf2_2">Weekly Google posts</span></li><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf2_3">Review generation system</span></li><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf2_4">Citation building</span></li><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf2_5">Priority support</span></li></ul><button class="price-btn" onclick="smoothScrollTo('audit')" data-i18n="p_start">Start Free Week</button><p class="rec-label" data-i18n="rec_label">Recommended for most businesses</p></div><div class="price-card reveal d3"><div class="price-tier" data-i18n="pt3">Scale</div><div class="price-amount"><span class="currency-sym">$</span>499<span data-i18n="p_mo">/mo</span></div><div class="price-period" data-i18n="p_after">after your free week</div><div class="price-free-note"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="p_free_note">First week always free</span></div><div class="price-roi"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><span data-i18n="roi3">For businesses aiming to dominate their area</span></div><div class="price-desc" data-i18n="pd3">The full service. For businesses that want to dominate their local area and stay there.</div><ul class="price-features"><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf3_1">Everything in Growth</span></li><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf3_2">Competitor monitoring</span></li><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf3_3">Advanced keyword targeting</span></li><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf3_4">Monthly strategy call</span></li><li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf3_5">Dedicated account manager</span></li></ul><button class="price-btn outline" onclick="smoothScrollTo('audit')" data-i18n="p_start">Start Free Week</button></div></div></section>
 
-    <div class="fg">
-      <label data-i18n="fl_name">Your Name</label>
-      <input type="text" name="name" required data-ph="fp_name" placeholder="First and last name">
-    </div>
+<div class="fcta"><h2 class="reveal" data-i18n="fc_h">Nothing to Lose.<br>Everything to Gain.</h2><p class="reveal d1" data-i18n="fc_p">Start free. Pay only when it's working. Your competitors aren't waiting.</p><button class="btn-w reveal d2" onclick="smoothScrollTo('audit')"><span data-i18n="fc_btn">Claim My Free Week</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
 
-    <div class="fg">
-      <label data-i18n="fl_phone">Phone</label>
-      <input type="tel" name="phone" required placeholder="+44 7700 000 000">
-    </div>
+<footer><div class="fl">NearbyFound</div><div data-i18n="ft_c">© 2026 NearbyFound. All rights reserved.</div><div class="fls"><a href="#" data-i18n="ft_p">Privacy Policy</a><a href="#" data-i18n="ft_t">Terms</a><a href="mailto:hello@nearbyfound.com">hello@nearbyfound.com</a></div></footer>
 
-    <div class="fg">
-      <label data-i18n="fl_email">Email</label>
-      <input type="email" name="email" required data-ph="fp_email" placeholder="you@yourbusiness.com">
-    </div>
-
-    <div class="fg">
-      <label data-i18n="fl_ind">Industry</label>
-      <select name="industry" required>
-        <option value="">Select your industry...</option>
-        <option>Trades &amp; Construction</option>
-        <option>Health &amp; Beauty</option>
-        <option>Food &amp; Hospitality</option>
-        <option>Retail</option>
-        <option>Professional Services</option>
-        <option>Other</option>
-      </select>
-    </div>
-
-    <button type="submit" class="fsub">
-      <span data-i18n="form_btn">Claim My Free Week</span>
-    </button>
-
-  </form>
-
-  <p class="fnote">
-    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="11" width="18" height="11" rx="2"/>
-      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-    </svg>
-    <span data-i18n="form_note">No obligation. We'll be in touch within 24 hours.</span>
-  </p>
-</div>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ TRUST STRIP (replaces live counter) ═══ -->
-<div class="live-counter-wrap">
-  <div class="live-counter-inner">
-
-    <div class="lc-item">
-      <div class="lc-dot"></div>
-      <div class="lc-text">Free 7-day optimisation trial</div>
-    </div>
-
-    <div class="lc-divider"></div>
-
-    <div class="lc-item">
-      <div class="lc-dot"></div>
-      <div class="lc-text">No setup fee • No credit card required</div>
-    </div>
-
-    <div class="lc-divider"></div>
-
-    <div class="lc-item">
-      <div class="lc-dot"></div>
-      <div class="lc-text">Pay only after results</div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ═══ STATS ═══ -->
-<div class="stats">
-  <div class="stats-in">
-    <div class="reveal"><div class="sn">7 Days</div><div class="sl" data-i18n="s2">To See First Results</div></div>
-    <div class="reveal d1"><div class="sn">100%</div><div class="sl" data-i18n="s3">Results Guarantee</div></div>
-    <div class="reveal d2"><div class="sn">3×</div><div class="sl" data-i18n="s4">Typical Lead Increase</div></div>
-  </div>
-</div>
-
-<!-- ═══ PROOF STRIP ═══ -->
-<!-- <div class="proof-strip">
-  <div class="proof-track">
-  </div>
-</div> --> 
-
-<!-- ═══ OUTCOME BRIDGE ═══ -->
-<div class="bridge">
-  <div class="bridge-inner">
-    <div class="bridge-grid">
-      <div>
-        <span class="bridge-label reveal" data-i18n="br_tag">The System</span>
-        <h2 class="reveal d1" data-i18n="br_h">This isn't SEO hope.<br>It's a <em>repeatable result.</em></h2>
-        <p class="bridge-sub reveal d2" data-i18n="br_sub">Every business we work with goes through the same proven sequence. The outcomes aren't luck — they're the output of a process built around exactly how Google's local algorithm works.</p>
-        <div class="outcome-list">
-          <div class="outcome-item reveal d2">
-            <div class="oi-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="none" fill="#1A6BF5"/></svg></div>
-            <div class="oi-body"><h4 data-i18n="br_o1h">Visibility rises fast</h4><p data-i18n="br_o1p">Profile signals are updated within 24 hours. Most clients see movement in ranking within the first week.</p></div>
-          </div>
-          <div class="outcome-item reveal d3">
-            <div class="oi-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-            <div class="oi-body"><h4 data-i18n="br_o2h">Calls increase measurably</h4><p data-i18n="br_o2p">Our average client sees 15–40 additional inbound calls per month by the end of week 4.</p></div>
-          </div>
-          <div class="outcome-item reveal d4">
-            <div class="oi-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-            <div class="oi-body"><h4 data-i18n="br_o3h">Reviews compound over time</h4><p data-i18n="br_o3p">A steady review system means your reputation keeps growing every single month without extra effort from you.</p></div>
-          </div>
-        </div>
-      </div>
-      <div class="timeline-visual reveal-scale d2">
-        <div class="tl-card">
-          <div class="tl-header">
-            <h4 data-i18n="tl_h">What happens after you sign up</h4>
-            <p data-i18n="tl_sub">A typical client journey</p>
-          </div>
-          <div class="tl-body">
-            <div class="tl-row">
-              <div class="tl-circle done"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-              <div class="tl-info"><div class="tl-day" data-i18n="tl_d1">Day 1</div><p data-i18n="tl_p1">Free audit completed</p><span data-i18n="tl_s1">We review your full profile & send findings</span></div>
-            </div>
-            <div class="tl-row">
-              <div class="tl-circle done"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-              <div class="tl-info"><div class="tl-day" data-i18n="tl_d2">Day 2–3</div><p data-i18n="tl_p2">Full optimisation goes live</p><span data-i18n="tl_s2">Categories, photos, posts, descriptions — all done</span></div>
-            </div>
-            <div class="tl-row">
-              <div class="tl-circle done"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-              <div class="tl-info"><div class="tl-day" data-i18n="tl_d3">Day 5–7</div><p data-i18n="tl_p3">You start seeing movement</p><span data-i18n="tl_s3">Ranking shifts, more profile views, first extra calls</span></div>
-            </div>
-            <div class="tl-row">
-              <div class="tl-circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg></div>
-              <div class="tl-info"><div class="tl-day" data-i18n="tl_d4">Week 2+</div><p data-i18n="tl_p4">Subscription starts (your choice)</p><span data-i18n="tl_s4">Only if results are there — you decide</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ GUARANTEE ═══ -->
-<div class="guar-wrap" id="guarantee">
-  <div class="guar-inner">
-    <div class="g-kicker reveal"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span data-i18n="g_kicker">Risk-Free Guarantee</span></div>
-    <h2 class="reveal d1" data-i18n="g_h2">Try It Free. Pay Only<br>When You See <em>Results.</em></h2>
-    <p class="g-sub reveal d2" data-i18n="g_sub">We optimise your profile for a full week at zero cost. No results after that? We keep going, free of charge, until you do. You only pay once it's working.</p>
-    <div class="gbox reveal d3">
-      <div class="gseal"><div class="gs-big" data-i18n="seal_n">100%</div><div class="gs-sm" data-i18n="seal_t">Results<br>Guarantee</div></div>
-      <div class="gtext">
-        <h3 data-i18n="g_box_h">You cannot lose.</h3>
-        <p data-i18n="g_box_p">We start for <strong>free</strong>. If you don't see more calls, more visibility, and a better ranking in week 1, we keep working at <strong>no charge</strong> until you do. Your subscription only starts the week your results arrive. <strong>No results means no payment. Full stop.</strong></p>
-      </div>
-    </div>
-    <button class="btn-gold reveal d4" onclick="smoothScrollTo('audit')">
-      <span data-i18n="g_btn">Start My Free Week</span>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </button>
-    <p class="gmicro reveal d5" data-i18n="g_micro">No credit card. No contract. Cancel anytime.</p>
-  </div>
-</div>
-
-<!-- ═══ SERVICES ═══ -->
-<section class="sec" id="services">
-  <span class="stag reveal" data-i18n="sv_tag">What We Do</span>
-  <h2 class="stitle reveal d1" data-i18n="sv_h">Everything Your Profile Needs to Rank</h2>
-  <p class="ssub reveal d2" data-i18n="sv_sub">We take care of your entire Google presence so you can focus on running your business.</p>
-  <div class="sgrid">
-    <div class="sc reveal d1"><div class="si"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="none" fill="#1A6BF5"/></svg></div><h4 data-i18n="s1h">Profile Optimisation</h4><p data-i18n="s1p">Every section rebuilt to exactly what Google rewards. Categories, descriptions, service areas and attributes all dialled in.</p></div>
-    <div class="sc reveal d2"><div class="si"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h4 data-i18n="s2h">Review Strategy</h4><p data-i18n="s2p">A simple system that brings in more 5-star reviews consistently, building your reputation while you focus on the job.</p></div>
-    <div class="sc reveal d3"><div class="si"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><h4 data-i18n="s3h">Map Pack Ranking</h4><p data-i18n="s3p">The local map pack captures the majority of local clicks. We work to place you in the top 3 using proven local SEO methods.</p></div>
-    <div class="sc reveal d4"><div class="si"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><h4 data-i18n="s4h">Photo Optimisation</h4><p data-i18n="s4p">The right photos in the right places make a real difference. We handle geotagging, scheduling, and presentation.</p></div>
-    <div class="sc reveal d5"><div class="si"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><h4 data-i18n="s5h">Weekly Posts</h4><p data-i18n="s5p">Keeps your profile fresh and active. Written and published for you every week without you lifting a finger.</p></div>
-    <div class="sc reveal d6"><div class="si"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><h4 data-i18n="s6h">Monthly Reports</h4><p data-i18n="s6p">Straightforward reports showing your calls, views, and ranking progress each month. No jargon, just the numbers that matter.</p></div>
-  </div>
-</section>
-
-<!-- ═══ PROCESS ═══ -->
-<div class="proc-bg" id="process">
-  <section class="sec">
-    <span class="stag reveal" data-i18n="pr_tag">How It Works</span>
-    <h2 class="stitle reveal d1" data-i18n="pr_h">Simple. Fast. Risk-Free.</h2>
-    <p class="ssub reveal d2" data-i18n="pr_sub">Four steps and you're live. No technical knowledge needed from your side.</p>
-    <div class="pgrid">
-      <div class="pstep reveal d1"><div class="pn">1</div><h4 data-i18n="p1h">Free Audit</h4><p data-i18n="p1p">We review your current profile and show you exactly what's holding you back. No cost, no strings attached.</p></div>
-      <div class="pstep reveal d2"><div class="pn">2</div><h4 data-i18n="p2h">Quick Call</h4><p data-i18n="p2p">A short 30-minute call to go through the findings and agree on the best plan for your business.</p></div>
-      <div class="pstep reveal d3"><div class="pn">3</div><h4 data-i18n="p3h">We Get to Work</h4><p data-i18n="p3p">Your profile is fully optimised during week 1 at no charge. We handle everything from start to finish.</p></div>
-      <div class="pstep reveal d4"><div class="pn">4</div><h4 data-i18n="p4h">Results First, Then Pay</h4><p data-i18n="p4p">Your subscription only begins the week you start seeing results. Not a day before.</p></div>
-    </div>
-  </section>
-</div>
-
-<!-- ═══ PRICING ═══ -->
-<section class="sec" id="pricing">
-  <span class="stag reveal" data-i18n="pr2_tag">Pricing</span>
-  <h2 class="stitle reveal d1" data-i18n="pr2_h">Simple, Transparent Pricing</h2>
-  <p class="ssub reveal d2" data-i18n="pr2_sub">All plans start with a free week. Pick the level that suits your goals.</p>
-  <div class="price-grid">
-
-    <div class="price-card reveal d1">
-      <div class="price-tier" data-i18n="pt1">Starter</div>
-      <div class="price-amount"><span class="currency-sym">$</span>199<span data-i18n="p_mo">/mo</span></div>
-      <div class="price-period" data-i18n="p_after">after your free week</div>
-      <div class="price-free-note"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="p_free_note">First week always free</span></div>
-      <div class="price-roi"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><span data-i18n="roi1">Typically generates +15–25 extra calls/month</span></div>
-      <div class="price-desc" data-i18n="pd1">The essentials to get your profile found and generating calls. Perfect for getting started.</div>
-      <ul class="price-features">
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf1_1">Full profile optimisation</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf1_2">Photo strategy</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf1_3">2 Google posts per month</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf1_4">Monthly performance report</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf1_5">Email support</span></li>
-      </ul>
-      <button class="price-btn outline" onclick="smoothScrollTo('audit')" data-i18n="p_start">Start Free Week</button>
-    </div>
-
-    <div class="price-card featured reveal d2">
-      <div class="price-badge" data-i18n="p_popular">Most Popular</div>
-      <div class="price-tier blue" data-i18n="pt2">Growth</div>
-      <div class="price-amount"><span class="currency-sym">$</span>349<span data-i18n="p_mo">/mo</span></div>
-      <div class="price-period" data-i18n="p_after">after your free week</div>
-      <div class="price-free-note"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="p_free_note">First week always free</span></div>
-      <div class="price-roi"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><span data-i18n="roi2">Designed for growing local businesses</span></div>
-      <div class="price-desc" data-i18n="pd2">More content, more reviews, more visibility. For businesses serious about being the go-to in their area.</div>
-      <ul class="price-features">
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf2_1">Everything in Starter</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf2_2">Weekly Google posts</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf2_3">Review generation system</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf2_4">Citation building</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf2_5">Priority support</span></li>
-      </ul>
-      <button class="price-btn" onclick="smoothScrollTo('audit')" data-i18n="p_start">Start Free Week</button>
-      <p class="rec-label" data-i18n="rec_label">Recommended for most businesses</p>
-    </div>
-
-    <div class="price-card reveal d3">
-      <div class="price-tier" data-i18n="pt3">Scale</div>
-      <div class="price-amount"><span class="currency-sym">$</span>499<span data-i18n="p_mo">/mo</span></div>
-      <div class="price-period" data-i18n="p_after">after your free week</div>
-      <div class="price-free-note"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="p_free_note">First week always free</span></div>
-      <div class="price-roi"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><span data-i18n="roi3">For businesses aiming to dominate their area</span></div>
-      <div class="price-desc" data-i18n="pd3">The full service. For businesses that want to dominate their local area and stay there.</div>
-      <ul class="price-features">
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf3_1">Everything in Growth</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf3_2">Competitor monitoring</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf3_3">Advanced keyword targeting</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf3_4">Monthly strategy call</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="pf3_5">Dedicated account manager</span></li>
-      </ul>
-      <button class="price-btn outline" onclick="smoothScrollTo('audit')" data-i18n="p_start">Start Free Week</button>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══ FINAL CTA ═══ -->
-<div class="fcta">
-  <h2 class="reveal" data-i18n="fc_h">Nothing to Lose.<br>Everything to Gain.</h2>
-  <p class="reveal d1" data-i18n="fc_p">Start free. Pay only when it's working. Your competitors aren't waiting.</p>
-  <button class="btn-w reveal d2" onclick="smoothScrollTo('audit')">
-    <span data-i18n="fc_btn">Claim My Free Week</span>
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </button>
-</div>
-
-<footer>
-  <div class="fl">NearbyFound</div>
-  <div data-i18n="ft_c">© 2026 NearbyFound. All rights reserved.</div>
-  <div class="fls">
-    <a href="#" data-i18n="ft_p">Privacy Policy</a>
-    <a href="#" data-i18n="ft_t">Terms</a>
-    <a href="mailto:hello@nearbyfound.com">hello@nearbyfound.com</a>
-  </div>
-</footer>
+<div id="toastMsg" class="toast-msg"></div>
 
 <script>
-/* ── SMOOTH SCROLL ── */
+// ---------- EMAILJS CONFIGURATION (REPLACE WITH YOUR KEYS) ----------
+// IMPORTANT: You must replace these with your actual EmailJS credentials
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";     // Get from EmailJS dashboard
+const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";    // e.g., "service_xxxx"
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";   // e.g., "template_xxxx"
+
+// Initialize EmailJS
+(function initEmailJS() {
+  if (EMAILJS_PUBLIC_KEY && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+    console.log("EmailJS initialized");
+  } else {
+    console.warn("⚠️ EmailJS: Please replace placeholder keys with your actual EmailJS credentials (public key, service ID, template ID)");
+  }
+})();
+
+// Helper: show toast notification
+function showToast(message, isError = false) {
+  const toast = document.getElementById('toastMsg');
+  toast.textContent = message;
+  toast.classList.remove('success', 'error');
+  toast.classList.add(isError ? 'error' : 'success', 'show');
+  setTimeout(() => toast.classList.remove('show'), 4000);
+}
+
+// Handle form submission via EmailJS
+async function handleFormSubmit(event) {
+  event.preventDefault();
+  const form = event.target;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const originalBtnText = submitBtn.innerHTML;
+  
+  // Disable button and show loading state
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span>Sending...</span>';
+  
+  // Gather form data
+  const formData = new FormData(form);
+  const templateParams = {
+    business_name: formData.get('business_name') || '',
+    name: formData.get('name') || '',
+    phone: formData.get('phone') || '',
+    email: formData.get('email') || '',
+    industry: formData.get('industry') || '',
+    to_email: 'hello@nearbyfound.com',  // recipient email
+    subject: `New Free Week Claim from ${formData.get('name') || 'Visitor'}`
+  };
+  
+  // Validate required fields (client-side fallback)
+  if (!templateParams.business_name || !templateParams.name || !templateParams.phone || !templateParams.email || !templateParams.industry) {
+    showToast('Please fill all required fields.', true);
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalBtnText;
+    return;
+  }
+  
+  try {
+    // Check if EmailJS is configured
+    if (!EMAILJS_PUBLIC_KEY || EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY" || !EMAILJS_SERVICE_ID || EMAILJS_SERVICE_ID === "YOUR_SERVICE_ID" || !EMAILJS_TEMPLATE_ID || EMAILJS_TEMPLATE_ID === "YOUR_TEMPLATE_ID") {
+      // Fallback simulation for demo - show success message and log to console
+      console.warn("EmailJS not fully configured. In production, replace the keys.");
+      console.log("Lead data:", templateParams);
+      showToast('✅ Demo: Lead submitted! (EmailJS keys needed for real email)', false);
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+      return;
+    }
+    
+    // Send email using EmailJS
+    const response = await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      templateParams
+    );
+    
+    if (response.status === 200) {
+      showToast('🎉 Thank you! We\'ll be in touch within 24 hours.', false);
+      form.reset();  // clear form on success
+    } else {
+      throw new Error('Unexpected response status');
+    }
+  } catch (error) {
+    console.error('EmailJS error:', error);
+    showToast('⚠️ Something went wrong. Please try again or contact us directly.', true);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalBtnText;
+  }
+}
+
+// Attach event listener to the form
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('emailjs-form');
+  if (form) {
+    form.addEventListener('submit', handleFormSubmit);
+  }
+});
+
+// ----- everything else remains (smooth scroll, i18n, animations) -----
 function smoothScrollTo(id){
   const el=document.getElementById(id);
   if(!el)return;
@@ -726,37 +461,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     if(el){e.preventDefault();smoothScrollTo(id);}
   });
 });
-
-/* ── INTERSECTION OBSERVER (scroll reveals) ── */
 const io=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
-  });
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
 },{threshold:.12});
 document.querySelectorAll('.reveal,.reveal-left,.reveal-scale').forEach(el=>io.observe(el));
 
-/* ── LIVE COUNTER ANIMATION ── */
-function animateCount(el,target,suffix,duration){
-  const start=performance.now();
-  const from=parseInt(el.textContent)||0;
-  function update(now){
-    const p=Math.min((now-start)/duration,1);
-    const ease=1-Math.pow(1-p,3);
-    el.textContent=Math.round(from+(target-from)*ease)+(suffix||'');
-    if(p<1)requestAnimationFrame(update);
-  }
-  requestAnimationFrame(update);
-}
-// Trigger on first scroll
 let counted=false;
 window.addEventListener('scroll',function(){
   if(counted)return;
   const lc=document.querySelector('.live-counter-wrap');
-  if(lc&&lc.getBoundingClientRect().top<window.innerHeight){
-    counted=true;
-    animateCount(document.getElementById('counter-calls'),247,'',1200);
-    animateCount(document.getElementById('counter-profiles'),38,'',900);
-  }
+  if(lc&&lc.getBoundingClientRect().top<window.innerHeight){counted=true;}
 },{passive:true});
 
 /* ── SUBTLE LIVE COUNTER DRIFT (makes it feel live) ── */
