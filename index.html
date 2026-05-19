@@ -351,24 +351,12 @@ async function handleFormSubmit(event) {
     return;
   }
   
+  // Send lead notification to YOU only (no auto-reply)
   try {
-    // Send lead notification to YOU
     const response1 = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, leadData);
     
-    // Send auto-reply thank you to the CUSTOMER
-    const autoReplyData = {
-      business_name: leadData.business_name,
-      name: leadData.name,
-      phone: leadData.phone,
-      email: leadData.email,
-      industry: leadData.industry,
-      to_email: leadData.email,
-      subject: `Thank you ${leadData.name}! Your free week with NearbyFound starts now`
-    };
-    const response2 = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE_ID, autoReplyData);
-    
-    if (response1.status === 200 && response2.status === 200) {
-      showToast('🎉 Thank you! Check your email - we\'ll be in touch within 24 hours.', false);
+    if (response1.status === 200) {
+      showToast('🎉 Thank you! We\'ll be in touch within 24 hours.', false);
       form.reset();
     } else {
       throw new Error('Unexpected response');
@@ -381,7 +369,7 @@ async function handleFormSubmit(event) {
     submitBtn.innerHTML = originalBtnText;
   }
 }
-
+  
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('emailjs-form');
   if (form) form.addEventListener('submit', handleFormSubmit);
