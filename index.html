@@ -351,11 +351,31 @@ async function handleFormSubmit(event) {
     return;
   }
   
-  // Send lead notification to YOU only (no auto-reply)
   try {
+    // Send lead notification to YOU
     const response1 = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, leadData);
     
     if (response1.status === 200) {
+      // Try to send auto-reply using a DIFFERENT service (Gmail)
+      try {
+        // You need a Gmail service ID here
+        const GMAIL_SERVICE_ID = "service_YOUR_GMAIL_ID"; // Replace with your Gmail service ID
+        
+        const autoReplyData = {
+          business_name: leadData.business_name,
+          name: leadData.name,
+          phone: leadData.phone,
+          email: leadData.email,
+          industry: leadData.industry,
+          to_email: leadData.email,
+          subject: `Thank you ${leadData.name}! Your free week with NearbyFound starts now`
+        };
+        await emailjs.send(GMAIL_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE_ID, autoReplyData);
+      } catch (autoError) {
+        // Auto-reply failed, but lead worked - log but don't show error
+        console.log('Auto-reply not sent:', autoError);
+      }
+      
       showToast('🎉 Thank you! We\'ll be in touch within 24 hours.', false);
       form.reset();
     } else {
