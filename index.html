@@ -238,9 +238,14 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
 .chip-1 svg{stroke:#22C55E}
 .chip-2 svg{stroke:var(--blue)}
 @media(max-width:1024px){.nav-links{display:none}}
+
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr;gap:36px;padding:56px 5%}
-  .visual{order:-1}.chip{display:none}
+  .hero{grid-template-columns:1fr;gap:36px;padding:56px 5%;overflow-x:hidden}
+  /* Fix: Remove order:-1 and properly reorder content */
+  .hero > div:first-child{order:1}  /* Headline text - FIRST */
+  .visual{order:2;margin-top:0}      /* Google mockup - SECOND */
+  .chip{display:none}
+  /* Form stays at bottom */
   .stats-in{grid-template-columns:repeat(2,1fr)}
   .sgrid{grid-template-columns:repeat(2,1fr)}
   .pgrid{grid-template-columns:repeat(2,1fr)}.pgrid::before{display:none}
@@ -249,7 +254,14 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
   .gbox{flex-direction:column;text-align:center;padding:28px 20px}
   .bridge-grid{grid-template-columns:1fr}.timeline-visual{display:none}
   footer{flex-direction:column;text-align:center}.fls{justify-content:center}
+  /* Fix horizontal scroll on mobile */
+  body, .hero-wrap, .hero, .visual, .results-card, .form-card{overflow-x:hidden;max-width:100%}
+  .results-card{width:100%}
+  .g-bar{flex-wrap:wrap}
+  .g-search span{white-space:normal;word-break:break-word}
+  .chip{display:none} /* Already hiding chips that cause overflow */
 }
+
 @media(max-width:600px){
   .sgrid{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr}
   .stats-in{grid-template-columns:repeat(2,1fr)}
@@ -260,6 +272,10 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
   .price-grid{max-width:100%}
   footer{padding:28px 4%}
   .live-counter-inner{flex-direction:column;gap:16px}.lc-divider{display:none}
+  /* Additional overflow fixes for very small screens */
+  .mr-name{flex-wrap:wrap}
+  .price-card{padding:24px 18px}
+  .form-card{padding:20px 16px}
 }
 </style>
 </head>
