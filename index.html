@@ -277,7 +277,7 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
   .price-card{padding:24px 18px}
   .form-card{padding:20px 16px}
   
-  /* FIX: Nav button too long on mobile */
+  /* FIX: Nav button too long on mobile - REPLACE entire button content */
   .nav-right {
     gap: 6px;
   }
@@ -287,14 +287,23 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
     font-size: 11px;
   }
   
-  /* Hide the original span text */
+  /* Hide the original text and SVG, replace with new text */
   .nav-btn span {
     display: none;
   }
   
-  /* Add new shorter text */
+  .nav-btn svg {
+    display: none;
+  }
+  
+  .nav-btn {
+    font-size: 0;
+  }
+  
   .nav-btn::before {
     content: "Free Week";
+    font-size: 11px;
+    display: inline-block;
   }
   
   /* Prevent body from scrolling sideways */
@@ -328,6 +337,7 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
   
   .nav-btn::before {
     content: "Free";
+    font-size: 10px;
   }
   
   .lang-sw .lb {
