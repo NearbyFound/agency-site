@@ -266,7 +266,7 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
   .sgrid{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr}
   .stats-in{grid-template-columns:repeat(2,1fr)}
   .ann{font-size:12px;gap:6px}
-  nav{padding:0 4%}
+  nav{padding:0 4%;overflow-x:visible}
   .hero{padding:48px 4% 56px}.sec{padding:64px 4%}
   .guar-wrap{padding:60px 4%}.gbox{padding:24px 18px}
   .price-grid{max-width:100%}
@@ -276,6 +276,67 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
   .mr-name{flex-wrap:wrap}
   .price-card{padding:24px 18px}
   .form-card{padding:20px 16px}
+  
+  /* FIX: Nav button too long on mobile */
+  .nav-right {
+    gap: 6px;
+  }
+  
+  .nav-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  
+  .nav-btn span {
+    display: none;
+  }
+  
+  .nav-btn::before {
+    content: "Free Week";
+  }
+  
+  /* Prevent body from scrolling sideways */
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
+  /* Make logo smaller on mobile to save space */
+  .logo {
+    font-size: 16px;
+  }
+  
+  .logo-icon {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .logo-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media(max-width: 400px){
+  /* Extra small phones */
+  .nav-btn {
+    padding: 5px 8px;
+  }
+  
+  .nav-btn::before {
+    content: "Free";
+  }
+  
+  .lang-sw .lb {
+    padding: 3px 5px;
+    font-size: 10px;
+  }
+  
+  .logo {
+    font-size: 14px;
+    gap: 4px;
+  }
 }
 </style>
 </head>
