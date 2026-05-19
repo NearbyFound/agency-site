@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-<!-- EmailJS SDK -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -20,8 +19,6 @@
 html{scroll-behavior:smooth}
 body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.6;overflow-x:hidden}
 *{scroll-margin-top:80px}
-
-/* ── REVEAL ANIMATIONS ── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
 .reveal.visible{opacity:1;transform:none}
 .reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
@@ -29,12 +26,8 @@ body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--text);fon
 .reveal-scale{opacity:0;transform:scale(.94);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
 .reveal-scale.visible{opacity:1;transform:none}
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}
-
-/* ── ANN BAR ── */
 .ann{background:linear-gradient(90deg,#0F1623,#1A3A8F,#0F1623);color:white;text-align:center;padding:10px 20px;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
 .ann-tag{background:var(--gold);color:#0F1623;font-size:11px;font-weight:800;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
-
-/* ── NAV ── */
 nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
 .logo{font-weight:800;font-size:20px;color:var(--text);letter-spacing:-.5px;display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0}
 .logo-icon{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center}
@@ -49,17 +42,13 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 .lb:hover:not(.active){background:var(--border);color:var(--text)}
 .nav-btn{background:var(--blue);color:white;border:none;padding:9px 18px;border-radius:var(--rs);font-family:'Manrope',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
 .nav-btn:hover{background:var(--blue-dark)}
-
-/* ── HERO ── */
 .hero-wrap{position:relative;overflow:hidden;background:#F8FAFF;border-bottom:1px solid var(--border)}
 .hero-wrap::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:48px 48px;opacity:.3;pointer-events:none}
 .hero-wrap::after{content:'';position:absolute;top:-150px;right:-60px;width:620px;height:620px;background:radial-gradient(circle,rgba(26,107,245,.1) 0%,transparent 65%);pointer-events:none}
 .hero{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:80px 5% 88px;max-width:1240px;margin:0 auto;position:relative;z-index:1}
-
 .badge{display:inline-flex;align-items:center;gap:7px;background:white;color:var(--blue);font-size:12px;font-weight:700;padding:5px 14px;border-radius:100px;border:1px solid rgba(26,107,245,.2);margin-bottom:22px;box-shadow:0 2px 8px rgba(26,107,245,.08)}
 .bdot{width:6px;height:6px;background:#22C55E;border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
-
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(34px,4vw,56px);line-height:1.1;color:var(--text);letter-spacing:-.5px;margin-bottom:18px}
 .hero h1 em{font-style:italic;color:var(--blue)}
 .hero-sub{font-size:16.5px;color:var(--muted);line-height:1.8;margin-bottom:14px;max-width:480px}
@@ -75,22 +64,16 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 .trust-icon svg{width:18px;height:18px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .trust-txt{font-size:13px;color:var(--muted);font-weight:500;line-height:1.4}
 .trust-txt strong{color:var(--text);display:block}
-
-/* ── VISUAL (right col) ── */
 .visual{position:relative;display:flex;flex-direction:column;gap:14px}
 .chip{position:absolute;background:white;border:1px solid var(--border);border-radius:9px;padding:8px 12px;box-shadow:0 4px 16px rgba(0,0,0,.09);display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;white-space:nowrap;z-index:10;color:var(--text)}
 .chip svg{width:14px;height:14px;fill:none;stroke-width:2;flex-shrink:0}
 .chip-1{top:-14px;right:-6px;animation:fl 4s ease-in-out infinite}
-.chip-2{bottom:548px;right:-6px;animation:fl 4s ease-in-out infinite 1.1s}
-.chip-1 svg{stroke:#22C55E}.chip-2 svg{stroke:var(--blue)}
+.chip-2{bottom:48%;right:-6px;animation:fl 4s ease-in-out infinite 1.1s}
 @keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-
-/* ── RESULTS CARD ── */
 .results-card{background:white;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,.04),0 20px 48px rgba(0,0,0,.1)}
 .g-bar{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
 .g-search{flex:1;background:var(--soft);border:1.5px solid var(--border);border-radius:24px;padding:8px 14px 8px 12px;font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px}
 .g-search svg{width:14px;height:14px;stroke:var(--muted);fill:none;stroke-width:2;flex-shrink:0}
-.g-search span{color:var(--text);font-size:13px;font-weight:500}
 .g-logo{font-size:17px;font-weight:800;letter-spacing:-1px;flex-shrink:0}
 .g-logo .g-b{color:#4285F4}.g-logo .g-r{color:#EA4335}.g-logo .g-y{color:#FBBC05}.g-logo .g-g{color:#34A853}
 .map-pack{border-bottom:1px solid var(--border)}
@@ -123,17 +106,13 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 .org-url{font-size:10px;color:var(--green);font-weight:600;margin-bottom:2px}
 .org-title{font-size:13px;font-weight:700;color:#1558D6;line-height:1.3;margin-bottom:2px}
 .org-desc{font-size:11px;color:var(--muted);line-height:1.5}
-.org-desc strong{color:var(--text)}
-
-/* ── FORM CARD ── */
 .form-card{background:white;border:1px solid var(--border);border-radius:14px;padding:26px 24px;box-shadow:0 4px 6px rgba(0,0,0,.04),0 16px 40px rgba(0,0,0,.07)}
 .form-card h3{font-size:17px;font-weight:700;margin-bottom:3px}
 .form-card>p{font-size:13px;color:var(--muted);margin-bottom:16px}
 .fg{margin-bottom:10px}
 .fg label{display:block;font-size:12px;font-weight:600;margin-bottom:4px}
-.fg input,.fg select{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:var(--rs);font-family:'Manrope',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;appearance:none;background:white}
+.fg input,.fg select{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:var(--rs);font-family:'Manrope',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;background:white}
 .fg input:focus,.fg select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,107,245,.08)}
-.fg input::placeholder{color:#C0C4CC}
 .fsub{width:100%;background:var(--blue);color:white;border:none;padding:12px;border-radius:var(--rs);font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:7px}
 .fsub:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 6px 18px rgba(26,107,245,.28)}
 .fnote{text-align:center;font-size:11px;color:var(--muted);margin-top:9px;display:flex;align-items:center;justify-content:center;gap:4px}
@@ -141,22 +120,10 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 .toast-msg.show{opacity:1;}
 .toast-msg.error{background:#dc2626;}
 .toast-msg.success{background:#16A34A;}
-/* ── STATS ── */
 .stats{background:var(--text);padding:44px 5%}
 .stats-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center}
 .sn{font-family:'Playfair Display',serif;font-size:40px;color:var(--blue);line-height:1;margin-bottom:5px}
 .sl{font-size:12px;color:rgba(255,255,255,.5);font-weight:500;text-transform:uppercase;letter-spacing:.5px}
-
-/* ── PROOF STRIP (new) ── */
-.proof-strip{background:var(--soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 5%;overflow:hidden}
-.proof-track{display:flex;gap:40px;animation:marquee 28s linear infinite;width:max-content}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.proof-item{display:flex;align-items:center;gap:10px;white-space:nowrap;flex-shrink:0}
-.proof-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite}
-.proof-text{font-size:13px;font-weight:600;color:var(--text)}
-.proof-text span{color:var(--muted);font-weight:400}
-
-/* ── OUTCOME BRIDGE (new) ── */
 .bridge{background:white;padding:72px 5%}
 .bridge-inner{max-width:960px;margin:0 auto}
 .bridge-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
@@ -168,7 +135,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 .outcome-item{display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--soft);border:1px solid var(--border);border-radius:12px;transition:all .25s}
 .outcome-item:hover{border-color:rgba(26,107,245,.25);background:var(--blue-light);transform:translateX(4px)}
 .oi-icon{width:38px;height:38px;border-radius:9px;background:white;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.oi-icon svg{width:18px;height:18px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.oi-icon svg{width:18px;height:18px;stroke:var(--blue);fill:none;stroke-width:2}
 .oi-body h4{font-size:14px;font-weight:700;margin-bottom:3px}
 .oi-body p{font-size:13px;color:var(--muted);line-height:1.5}
 .timeline-visual{position:relative}
@@ -187,8 +154,6 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 .tl-day{font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
 .tl-info p{font-size:13px;color:var(--text);font-weight:500}
 .tl-info span{font-size:12px;color:var(--muted)}
-
-/* ── GUARANTEE ── */
 .guar-wrap{background:linear-gradient(135deg,#0F1623,#1A3A8F 60%,#0F1623);padding:80px 5%;position:relative;overflow:hidden}
 .guar-wrap::before{content:'';position:absolute;top:-80px;right:-80px;width:480px;height:480px;background:radial-gradient(circle,rgba(26,107,245,.18) 0%,transparent 65%);pointer-events:none}
 .guar-wrap::after{content:'';position:absolute;bottom:-60px;left:-60px;width:360px;height:360px;background:radial-gradient(circle,rgba(245,158,11,.1) 0%,transparent 65%);pointer-events:none}
@@ -208,8 +173,6 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 .btn-gold{background:var(--gold);color:#0F1623;border:none;padding:15px 32px;border-radius:var(--rs);font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:8px}
 .btn-gold:hover{background:#D97706;transform:translateY(-2px);box-shadow:0 10px 28px rgba(245,158,11,.38)}
 .gmicro{font-size:12px;color:rgba(255,255,255,.4);margin-top:12px}
-
-/* ── SERVICES ── */
 .sec{max-width:1240px;margin:0 auto;padding:84px 5%}
 .stag{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:10px}
 .stitle{font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);line-height:1.15;color:var(--text);margin-bottom:12px;letter-spacing:-.3px}
@@ -220,25 +183,21 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 .sc:hover{border-color:rgba(26,107,245,.25);box-shadow:0 8px 28px rgba(26,107,245,.09);transform:translateY(-3px)}
 .sc:hover::after{transform:scaleX(1)}
 .si{width:42px;height:42px;background:var(--blue-light);border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.si svg{width:20px;height:20px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.si svg{width:20px;height:20px;stroke:var(--blue);fill:none;stroke-width:2}
 .sc h4{font-size:15px;font-weight:700;margin-bottom:6px}
 .sc p{font-size:13px;color:var(--muted);line-height:1.7}
-
-/* ── PROCESS ── */
 .proc-bg{background:var(--soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;position:relative}
 .pgrid::before{content:'';position:absolute;top:21px;left:55px;right:55px;height:1px;background:var(--border)}
 .pstep .pn{width:42px;height:42px;background:var(--blue);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;margin-bottom:16px;position:relative;z-index:1}
 .pstep h4{font-size:15px;font-weight:700;margin-bottom:6px}
 .pstep p{font-size:13px;color:var(--muted);line-height:1.65}
-
-/* ── PRICING ── */
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
 .price-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:32px 28px;position:relative;transition:all .25s}
 .price-card.featured{border-color:var(--blue);box-shadow:0 8px 40px rgba(26,107,245,.15);transform:scale(1.04)}
 .price-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.1)}
 .price-card.featured:hover{transform:scale(1.04) translateY(-4px);box-shadow:0 16px 48px rgba(26,107,245,.25)}
-.price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--blue);color:white;font-size:11px;font-weight:700;padding:3px 14px;border-radius:100px;letter-spacing:.4px;white-space:nowrap}
+.price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--blue);color:white;font-size:11px;font-weight:700;padding:3px 14px;border-radius:100px;white-space:nowrap}
 .price-tier{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 .price-tier.blue{color:var(--blue)}
 .price-amount{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;color:var(--text);line-height:1;margin-bottom:4px}
@@ -247,7 +206,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 .price-free-note{font-size:12px;color:var(--green);font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:5px}
 .price-free-note svg{width:13px;height:13px;stroke:var(--green);fill:none;stroke-width:2.5}
 .price-roi{font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-light);padding:6px 10px;border-radius:7px;margin-bottom:14px;display:flex;align-items:center;gap:5px}
-.price-roi svg{width:12px;height:12px;stroke:var(--blue);fill:none;stroke-width:2.5;flex-shrink:0}
+.price-roi svg{width:12px;height:12px;stroke:var(--blue);fill:none;stroke-width:2.5}
 .price-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid var(--border)}
 .price-features{list-style:none;margin-bottom:28px}
 .price-features li{font-size:13px;color:var(--text);padding:6px 0;display:flex;align-items:flex-start;gap:9px;border-bottom:1px solid var(--soft)}
@@ -258,22 +217,16 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 .price-btn.outline{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
 .price-btn.outline:hover{background:var(--blue);color:white}
 .rec-label{font-size:11px;color:rgba(26,107,245,.8);font-weight:600;text-align:center;margin-top:10px}
-
-/* ── FINAL CTA ── */
 .fcta{background:var(--blue);padding:72px 5%;text-align:center}
 .fcta h2{font-family:'Playfair Display',serif;font-size:clamp(26px,4.5vw,46px);color:white;margin-bottom:12px;letter-spacing:-.3px}
 .fcta p{font-size:15px;color:rgba(255,255,255,.72);margin-bottom:28px}
 .btn-w{background:white;color:var(--blue);border:none;padding:14px 28px;border-radius:var(--rs);font-family:'Manrope',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:7px}
 .btn-w:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.18)}
-
-/* ── FOOTER ── */
 footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:13px}
 .fl{font-weight:800;font-size:15px;color:white}
 .fls{display:flex;gap:20px;flex-wrap:wrap}
 .fls a{color:rgba(255,255,255,.4);text-decoration:none;font-size:13px;transition:color .2s}
 .fls a:hover{color:white}
-
-/* ── LIVE COUNTER (new) ── */
 .live-counter-wrap{background:var(--text);padding:28px 5%}
 .live-counter-inner{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
 .lc-item{display:flex;align-items:center;gap:10px}
@@ -281,8 +234,9 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
 .lc-text{font-size:14px;color:rgba(255,255,255,.7);font-weight:500}
 .lc-text strong{color:white;font-size:22px;font-family:'Playfair Display',serif;margin-right:4px}
 .lc-divider{width:1px;height:32px;background:rgba(255,255,255,.12)}
-
-/* ── RESPONSIVE ── */
+.chip svg{width:14px;height:14px;fill:none;stroke-width:2;flex-shrink:0}
+.chip-1 svg{stroke:#22C55E}
+.chip-2 svg{stroke:var(--blue)}
 @media(max-width:1024px){.nav-links{display:none}}
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;gap:36px;padding:56px 5%}
@@ -292,7 +246,6 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
   .pgrid{grid-template-columns:repeat(2,1fr)}.pgrid::before{display:none}
   .price-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
   .price-card.featured{transform:none}
-  .price-card.featured:hover{transform:translateY(-4px)}
   .gbox{flex-direction:column;text-align:center;padding:28px 20px}
   .bridge-grid{grid-template-columns:1fr}.timeline-visual{display:none}
   footer{flex-direction:column;text-align:center}.fls{justify-content:center}
@@ -311,7 +264,9 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
 </style>
 </head>
 <body>
+
 <div class="ann"><span class="ann-tag" data-i18n="ann_tag">New</span><span data-i18n="ann_text">Try us free for 1 week. You only pay when you see real results.</span></div>
+
 <nav><a href="#" class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>NearbyFound</a><ul class="nav-links"><li><a href="#services" data-i18n="nav_sv">Services</a></li><li><a href="#guarantee" data-i18n="nav_guar">Our Guarantee</a></li><li><a href="#pricing" data-i18n="nav_price">Pricing</a></li><li><a href="#process" data-i18n="nav_how">How It Works</a></li></ul><div class="nav-right"><div class="lang-sw"><button class="lb active" onclick="setLang('en')">EN</button><button class="lb" onclick="setLang('nl')">NL</button><button class="lb" onclick="setLang('fr')">FR</button></div><button class="nav-btn" onclick="smoothScrollTo('audit')" data-i18n="nav_cta">Start Free Week</button></div></nav>
 
 <div class="hero-wrap"><div class="hero"><div><div class="badge reveal"><span class="bdot"></span><span data-i18n="hero_badge">Google Business Profile Specialists</span></div><h1 class="reveal d1" data-i18n="hero_h1">Get Found First.<br>Get More Calls. <em>Today.</em></h1><p class="hero-sub reveal d2" data-i18n="hero_sub">We optimise your Google Business Profile so local customers find you before your competitors and choose you first.</p><div class="offer-pill reveal d3"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="hero_pill">1 week completely free. Pay only once you see results.</span></div><div class="hero-actions reveal d4"><button class="btn-p" onclick="smoothScrollTo('audit')"><span data-i18n="hero_cta1">Start My Free Week</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button><button class="btn-o" onclick="smoothScrollTo('guarantee')" data-i18n="hero_cta2">See the Guarantee</button></div><div class="trust reveal d5"><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="trust-txt"><strong data-i18n="trust_strong">Zero risk. Zero upfront cost.</strong><span data-i18n="trust_sub">We prove it works before you spend a penny.</span></div></div></div><div class="visual reveal-scale d2"><div class="chip chip-1"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><span data-i18n="chip1">More calls within days</span></div><div class="chip chip-2"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span data-i18n="chip2">Ranking above competitors</span></div><div class="results-card"><div class="g-bar"><div class="g-logo"><span class="g-b">G</span><span class="g-r">o</span><span class="g-y">o</span><span class="g-b">g</span><span class="g-g">l</span><span class="g-r">e</span></div><div class="g-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span data-i18n="search_q">plumber near me</span></div></div><div class="map-pack"><div class="map-mini"><div class="rd r1"></div><div class="rd r2"></div><div class="rd r3"></div><div class="rd r4"></div><div class="pin p1"><div class="pb" data-i18n="pin_you">You</div></div><div class="pin p2"><div class="pb">#2</div></div><div class="pin p3"><div class="pb">#3</div></div></div><div class="map-results"><div class="mr"><div class="mr-num bl">1</div><div class="mr-info"><div class="mr-name"><span data-i18n="biz_you">Your Business</span><span class="mr-tag" data-i18n="biz_tag">Optimised</span></div><div class="mr-meta"><span class="mr-stars">★★★★★</span> 5.0 · <span data-i18n="biz_open">Open now</span></div></div></div><div class="mr"><div class="mr-num gr">2</div><div class="mr-info"><div class="mr-name" data-i18n="comp1">Competitor A</div><div class="mr-meta"><span class="mr-stars" style="color:#94A3B8">★★★★☆</span> 4.1</div></div></div><div class="mr"><div class="mr-num gr">3</div><div class="mr-info"><div class="mr-name" data-i18n="comp2">Competitor B</div><div class="mr-meta"><span class="mr-stars" style="color:#94A3B8">★★★☆☆</span> 3.7</div></div></div></div></div><div class="organic"><div class="org-label" data-i18n="org_label">Organic Results</div><div class="org-result"><div class="org-url" data-i18n="org_url1">yourbusiness.com</div><div class="org-title" data-i18n="org_title1">Your Business — Trusted Local Plumber</div><div class="org-desc" data-i18n="org_desc1">Serving your area for years. <strong>Fast response</strong>, fully insured, 5-star rated.</div></div><div class="org-result"><div class="org-url" data-i18n="org_url2">competitor-a.com</div><div class="org-title" data-i18n="org_title2">Competitor A Plumbing Services</div><div class="org-desc" data-i18n="org_desc2">General plumbing services in the local area.</div></div></div></div>
@@ -327,7 +282,7 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
 </form>
 <p class="fnote"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span data-i18n="form_note">No obligation. We'll be in touch within 24 hours.</span></p></div></div></div></div>
 
-<div class="live-counter-wrap"><div class="live-counter-inner"><div class="lc-item"><div class="lc-dot"></div><div class="lc-text">Free 7-day optimisation trial</div></div><div class="lc-divider"></div><div class="lc-item"><div class="lc-dot"></div><div class="lc-text">No setup fee • No credit card required</div></div><div class="lc-divider"></div><div class="lc-item"><div class="lc-dot"></div><div class="lc-text">Pay only after results</div></div></div></div>
+<div class="live-counter-wrap"><div class="live-counter-inner"><div class="lc-item"><div class="lc-dot"></div><div class="lc-text" data-i18n="lc_free_trial">Free 7-day optimisation trial</div></div><div class="lc-divider"></div><div class="lc-item"><div class="lc-dot"></div><div class="lc-text" data-i18n="lc_nocard">No setup fee • No credit card required</div></div><div class="lc-divider"></div><div class="lc-item"><div class="lc-dot"></div><div class="lc-text" data-i18n="lc_paylater">Pay only after results</div></div></div></div>
 
 <div class="stats"><div class="stats-in"><div class="reveal"><div class="sn">7 Days</div><div class="sl" data-i18n="s2">To See First Results</div></div><div class="reveal d1"><div class="sn">100%</div><div class="sl" data-i18n="s3">Results Guarantee</div></div><div class="reveal d2"><div class="sn">3×</div><div class="sl" data-i18n="s4">Typical Lead Increase</div></div></div></div>
 
@@ -348,23 +303,20 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
 <div id="toastMsg" class="toast-msg"></div>
 
 <script>
-// ---------- EMAILJS CONFIGURATION (REPLACE WITH YOUR KEYS) ----------
-// IMPORTANT: You must replace these with your actual EmailJS credentials
-const EMAILJS_PUBLIC_KEY = "meLShyln7WMpGCBse";     // Get from EmailJS dashboard
-const EMAILJS_SERVICE_ID  = "nearbyfound";    // e.g., "service_xxxx"
-const EMAILJS_TEMPLATE_ID = "template_7t6ootx";   // e.g., "template_xxxx"
+// EmailJS config - YOUR ACTUAL KEYS
+const EMAILJS_PUBLIC_KEY = "meLShyln7WMpGCBse";
+const EMAILJS_SERVICE_ID  = "nearbyfound";
+const EMAILJS_TEMPLATE_ID = "template_7t6ootx";      // Your lead notification template
+const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_d9g1mq9";  // Your auto-reply template for customers
 
 // Initialize EmailJS
 (function initEmailJS() {
-  if (EMAILJS_PUBLIC_KEY && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
+  if (EMAILJS_PUBLIC_KEY) {
     emailjs.init(EMAILJS_PUBLIC_KEY);
     console.log("EmailJS initialized");
-  } else {
-    console.warn("⚠️ EmailJS: Please replace placeholder keys with your actual EmailJS credentials (public key, service ID, template ID)");
   }
 })();
 
-// Helper: show toast notification
 function showToast(message, isError = false) {
   const toast = document.getElementById('toastMsg');
   toast.textContent = message;
@@ -373,31 +325,26 @@ function showToast(message, isError = false) {
   setTimeout(() => toast.classList.remove('show'), 4000);
 }
 
-// Handle form submission via EmailJS
 async function handleFormSubmit(event) {
   event.preventDefault();
   const form = event.target;
   const submitBtn = form.querySelector('button[type="submit"]');
   const originalBtnText = submitBtn.innerHTML;
-  
-  // Disable button and show loading state
   submitBtn.disabled = true;
   submitBtn.innerHTML = '<span>Sending...</span>';
   
-  // Gather form data
   const formData = new FormData(form);
-  const templateParams = {
+  const leadData = {
     business_name: formData.get('business_name') || '',
     name: formData.get('name') || '',
     phone: formData.get('phone') || '',
     email: formData.get('email') || '',
     industry: formData.get('industry') || '',
-    to_email: 'hello@nearbyfound.com',  // recipient email
+    to_email: 'hello@nearbyfound.com',
     subject: `New Free Week Claim from ${formData.get('name') || 'Visitor'}`
   };
   
-  // Validate required fields (client-side fallback)
-  if (!templateParams.business_name || !templateParams.name || !templateParams.phone || !templateParams.email || !templateParams.industry) {
+  if (!leadData.business_name || !leadData.name || !leadData.phone || !leadData.email || !leadData.industry) {
     showToast('Please fill all required fields.', true);
     submitBtn.disabled = false;
     submitBtn.innerHTML = originalBtnText;
@@ -405,355 +352,318 @@ async function handleFormSubmit(event) {
   }
   
   try {
-    // Check if EmailJS is configured
-    if (!EMAILJS_PUBLIC_KEY || EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY" || !EMAILJS_SERVICE_ID || EMAILJS_SERVICE_ID === "YOUR_SERVICE_ID" || !EMAILJS_TEMPLATE_ID || EMAILJS_TEMPLATE_ID === "YOUR_TEMPLATE_ID") {
-      // Fallback simulation for demo - show success message and log to console
-      console.warn("EmailJS not fully configured. In production, replace the keys.");
-      console.log("Lead data:", templateParams);
-      showToast('✅ Demo: Lead submitted! (EmailJS keys needed for real email)', false);
+    // Send lead notification to YOU
+    const response1 = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, leadData);
+    
+    // Send auto-reply thank you to the CUSTOMER
+    const autoReplyData = {
+      business_name: leadData.business_name,
+      name: leadData.name,
+      phone: leadData.phone,
+      email: leadData.email,
+      industry: leadData.industry,
+      to_email: leadData.email,
+      subject: `Thank you ${leadData.name}! Your free week with NearbyFound starts now`
+    };
+    const response2 = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE_ID, autoReplyData);
+    
+    if (response1.status === 200 && response2.status === 200) {
+      showToast('🎉 Thank you! Check your email - we\'ll be in touch within 24 hours.', false);
       form.reset();
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalBtnText;
-      return;
-    }
-    
-    // Send email using EmailJS
-    const response = await emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      templateParams
-    );
-    
-    if (response.status === 200) {
-      showToast('🎉 Thank you! We\'ll be in touch within 24 hours.', false);
-      form.reset();  // clear form on success
     } else {
-      throw new Error('Unexpected response status');
+      throw new Error('Unexpected response');
     }
   } catch (error) {
     console.error('EmailJS error:', error);
-    showToast('⚠️ Something went wrong. Please try again or contact us directly.', true);
+    showToast('⚠️ Something went wrong. Please try again.', true);
   } finally {
     submitBtn.disabled = false;
     submitBtn.innerHTML = originalBtnText;
   }
 }
 
-// Attach event listener to the form
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('emailjs-form');
-  if (form) {
-    form.addEventListener('submit', handleFormSubmit);
-  }
+  if (form) form.addEventListener('submit', handleFormSubmit);
 });
 
-// ----- everything else remains (smooth scroll, i18n, animations) -----
-function smoothScrollTo(id){
-  const el=document.getElementById(id);
-  if(!el)return;
-  const top=el.getBoundingClientRect().top+window.pageYOffset-80;
-  window.scrollTo({top,behavior:'smooth'});
+function smoothScrollTo(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.pageYOffset - 80;
+  window.scrollTo({ top, behavior: 'smooth' });
 }
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const id=a.getAttribute('href').slice(1);
-    const el=document.getElementById(id);
-    if(el){e.preventDefault();smoothScrollTo(id);}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) { e.preventDefault(); smoothScrollTo(id); }
   });
 });
-const io=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
-},{threshold:.12});
-document.querySelectorAll('.reveal,.reveal-left,.reveal-scale').forEach(el=>io.observe(el));
 
-let counted=false;
-window.addEventListener('scroll',function(){
-  if(counted)return;
-  const lc=document.querySelector('.live-counter-wrap');
-  if(lc&&lc.getBoundingClientRect().top<window.innerHeight){counted=true;}
-},{passive:true});
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: .12 });
+document.querySelectorAll('.reveal,.reveal-left,.reveal-scale').forEach(el => io.observe(el));
 
-/* ── SUBTLE LIVE COUNTER DRIFT (makes it feel live) ── */
-setInterval(()=>{
-  const el=document.getElementById('counter-calls');
-  if(el){
-    const cur=parseInt(el.textContent);
-    if(Math.random()>.6)el.textContent=(cur+1)+'';
+// Complete Multi-language support with ALL translations
+const CURR = { en: '$', nl: '€', fr: '€' };
+const T = {
+  en: {
+    ann_tag: "New", ann_text: "Try us free for 1 week. You only pay when you see real results.",
+    nav_sv: "Services", nav_guar: "Our Guarantee", nav_price: "Pricing", nav_how: "How It Works", nav_cta: "Start Free Week",
+    hero_badge: "Google Business Profile Specialists",
+    hero_h1: "Get Found First.<br>Get More Calls. <em>Today.</em>",
+    hero_sub: "We optimise your Google Business Profile so local customers find you before your competitors and choose you first.",
+    hero_pill: "1 week completely free. Pay only once you see results.",
+    hero_cta1: "Start My Free Week", hero_cta2: "See the Guarantee",
+    trust_strong: "Zero risk. Zero upfront cost.", trust_sub: "We prove it works before you spend a penny.",
+    chip1: "More calls within days", chip2: "Ranking above competitors",
+    search_q: "plumber near me", pin_you: "You",
+    biz_you: "Your Business", biz_tag: "Optimised", biz_open: "Open now",
+    comp1: "Competitor A", comp2: "Competitor B",
+    org_label: "Organic Results",
+    org_url1: "yourbusiness.com", org_title1: "Your Business — Trusted Local Plumber",
+    org_desc1: "Serving your area for years. Fast response, fully insured, 5-star rated.",
+    org_url2: "competitor-a.com", org_title2: "Competitor A Plumbing Services",
+    org_desc2: "General plumbing services in the local area.",
+    form_h: "Start Your Free Week", form_sub: "No card needed. We get to work, you watch the results come in.",
+    fl_biz: "Business Name", fp_biz: "e.g. Smith's Plumbing Ltd",
+    fl_name: "Your Name", fp_name: "First and last name",
+    fl_phone: "Phone", fl_email: "Email", fp_email: "you@yourbusiness.com",
+    fl_ind: "Industry", form_btn: "Claim My Free Week", form_note: "No obligation. We'll be in touch within 24 hours.",
+    s2: "To See First Results", s3: "Results Guarantee", s4: "Typical Lead Increase",
+    br_tag: "The System",
+    br_h: "This isn't SEO hope.<br>It's a <em>repeatable result.</em>",
+    br_sub: "Every business we work with goes through the same proven sequence. The outcomes aren't luck — they're the output of a process built around exactly how Google's local algorithm works.",
+    br_o1h: "Visibility rises fast", br_o1p: "Profile signals are updated within 24 hours. Most clients see movement in ranking within the first week.",
+    br_o2h: "Calls increase measurably", br_o2p: "Our average client sees 15–40 additional inbound calls per month by the end of week 4.",
+    br_o3h: "Reviews compound over time", br_o3p: "A steady review system means your reputation keeps growing every single month without extra effort from you.",
+    tl_h: "What happens after you sign up", tl_sub: "A typical client journey",
+    tl_d1: "Day 1", tl_p1: "Free audit completed", tl_s1: "We review your full profile & send findings",
+    tl_d2: "Day 2–3", tl_p2: "Full optimisation goes live", tl_s2: "Categories, photos, posts, descriptions — all done",
+    tl_d3: "Day 5–7", tl_p3: "You start seeing movement", tl_s3: "Ranking shifts, more profile views, first extra calls",
+    tl_d4: "Week 2+", tl_p4: "Subscription starts (your choice)", tl_s4: "Only if results are there — you decide",
+    g_kicker: "Risk-Free Guarantee",
+    g_h2: "Try It Free. Pay Only<br>When You See <em>Results.</em>",
+    g_sub: "We optimise your profile for a full week at zero cost. No results after that? We keep going, free of charge, until you do. You only pay once it's working.",
+    seal_n: "100%", seal_t: "Results<br>Guarantee",
+    g_box_h: "You cannot lose.",
+    g_box_p: "We start for <strong>free</strong>. If you don't see more calls, more visibility, and a better ranking in week 1, we keep working at <strong>no charge</strong> until you do. Your subscription only starts the week your results arrive. <strong>No results means no payment. Full stop.</strong>",
+    g_btn: "Start My Free Week", g_micro: "No credit card. No contract. Cancel anytime.",
+    sv_tag: "What We Do", sv_h: "Everything Your Profile Needs to Rank",
+    sv_sub: "We take care of your entire Google presence so you can focus on running your business.",
+    s1h: "Profile Optimisation", s1p: "Every section rebuilt to exactly what Google rewards. Categories, descriptions, service areas and attributes all dialled in.",
+    s2h: "Review Strategy", s2p: "A simple system that brings in more 5-star reviews consistently, building your reputation while you focus on the job.",
+    s3h: "Map Pack Ranking", s3p: "The local map pack captures the majority of local clicks. We work to place you in the top 3 using proven local SEO methods.",
+    s4h: "Photo Optimisation", s4p: "The right photos in the right places make a real difference. We handle geotagging, scheduling, and presentation.",
+    s5h: "Weekly Posts", s5p: "Keeps your profile fresh and active. Written and published for you every week without you lifting a finger.",
+    s6h: "Monthly Reports", s6p: "Straightforward reports showing your calls, views, and ranking progress each month. No jargon, just the numbers that matter.",
+    pr_tag: "How It Works", pr_h: "Simple. Fast. Risk-Free.",
+    pr_sub: "Four steps and you're live. No technical knowledge needed from your side.",
+    p1h: "Free Audit", p1p: "We review your current profile and show you exactly what's holding you back. No cost, no strings attached.",
+    p2h: "Quick Call", p2p: "A short 30-minute call to go through the findings and agree on the best plan for your business.",
+    p3h: "We Get to Work", p3p: "Your profile is fully optimised during week 1 at no charge. We handle everything from start to finish.",
+    p4h: "Results First, Then Pay", p4p: "Your subscription only begins the week you start seeing results. Not a day before.",
+    pr2_tag: "Pricing", pr2_h: "Simple, Transparent Pricing",
+    pr2_sub: "All plans start with a free week. Pick the level that suits your goals.",
+    pt1: "Starter", pt2: "Growth", pt3: "Scale",
+    p_mo: "/mo", p_after: "after your free week", p_free_note: "First week always free", p_popular: "Most Popular",
+    roi1: "Typically generates +15–25 extra calls/month",
+    roi2: "Designed for growing local businesses",
+    roi3: "For businesses aiming to dominate their area",
+    pd1: "The essentials to get your profile found and generating calls. Perfect for getting started.",
+    pd2: "More content, more reviews, more visibility. For businesses serious about being the go-to in their area.",
+    pd3: "The full service. For businesses that want to dominate their local area and stay there.",
+    pf1_1: "Full profile optimisation", pf1_2: "Photo strategy", pf1_3: "2 Google posts per month",
+    pf1_4: "Monthly performance report", pf1_5: "Email support",
+    pf2_1: "Everything in Starter", pf2_2: "Weekly Google posts", pf2_3: "Review generation system",
+    pf2_4: "Citation building", pf2_5: "Priority support",
+    pf3_1: "Everything in Growth", pf3_2: "Competitor monitoring", pf3_3: "Advanced keyword targeting",
+    pf3_4: "Monthly strategy call", pf3_5: "Dedicated account manager",
+    rec_label: "Recommended for most businesses",
+    p_start: "Start Free Week",
+    fc_h: "Nothing to Lose.<br>Everything to Gain.",
+    fc_p: "Start free. Pay only when it's working. Your competitors aren't waiting.",
+    fc_btn: "Claim My Free Week",
+    ft_c: "© 2026 NearbyFound. All rights reserved.", ft_p: "Privacy Policy", ft_t: "Terms",
+    lc_free_trial: "Free 7-day optimisation trial", lc_nocard: "No setup fee • No credit card required", lc_paylater: "Pay only after results"
+  },
+  nl: {
+    ann_tag: "Nieuw", ann_text: "Probeer ons 1 week gratis. U betaalt pas wanneer u echte resultaten ziet.",
+    nav_sv: "Diensten", nav_guar: "Onze garantie", nav_price: "Prijzen", nav_how: "Hoe het werkt", nav_cta: "Start gratis week",
+    hero_badge: "Google Business Profile Specialisten",
+    hero_h1: "Word als eerste gevonden.<br>Meer oproepen. <em>Vandaag nog.</em>",
+    hero_sub: "Wij optimaliseren uw Google Business Profile zodat lokale klanten u vinden vóór uw concurrenten en voor u kiezen.",
+    hero_pill: "1 week volledig gratis. U betaalt pas zodra u resultaten ziet.",
+    hero_cta1: "Start mijn gratis week", hero_cta2: "Bekijk de garantie",
+    trust_strong: "Nul risico. Nul kosten vooraf.", trust_sub: "Wij bewijzen dat het werkt voordat u een cent uitgeeft.",
+    chip1: "Meer oproepen binnen dagen", chip2: "Hogere positie dan concurrenten",
+    search_q: "loodgieter bij mij in de buurt", pin_you: "U",
+    biz_you: "Uw bedrijf", biz_tag: "Geoptimaliseerd", biz_open: "Nu open",
+    comp1: "Concurrent A", comp2: "Concurrent B",
+    org_label: "Organische resultaten",
+    org_url1: "uwbedrijf.nl", org_title1: "Uw Bedrijf — Betrouwbare lokale loodgieter",
+    org_desc1: "Al jaren actief in uw regio. Snelle reactie, volledig verzekerd, 5-sterren.",
+    org_url2: "concurrent-a.nl", org_title2: "Concurrent A Loodgietersdiensten",
+    org_desc2: "Algemene loodgietersdiensten in de regio.",
+    form_h: "Start uw gratis week", form_sub: "Geen creditcard nodig. Wij gaan aan de slag, u ziet de resultaten binnenkomen.",
+    fl_biz: "Bedrijfsnaam", fp_biz: "bijv. Loodgietersbedrijf Jansen",
+    fl_name: "Uw naam", fp_name: "Voor- en achternaam",
+    fl_phone: "Telefoon", fl_email: "E-mail", fp_email: "u@uwbedrijf.nl",
+    fl_ind: "Branche", form_btn: "Claim mijn gratis week", form_note: "Geen verplichtingen. Wij nemen binnen 24 uur contact op.",
+    s2: "Voor eerste resultaten", s3: "Resultatengarantie", s4: "Typische leadstijging",
+    br_tag: "Het systeem",
+    br_h: "Dit is geen SEO-hoop.<br>Dit is een <em>herhaalbaar resultaat.</em>",
+    br_sub: "Elk bedrijf waarmee we werken doorloopt dezelfde bewezen volgorde. De resultaten zijn geen toeval — ze zijn de output van een proces gebouwd rond de werking van Google's lokale algoritme.",
+    br_o1h: "Zichtbaarheid stijgt snel", br_o1p: "Profielsignalen worden binnen 24 uur bijgewerkt. De meeste klanten zien rankingbeweging binnen de eerste week.",
+    br_o2h: "Oproepen nemen meetbaar toe", br_o2p: "Onze gemiddelde klant ziet 15–40 extra inkomende oproepen per maand aan het einde van week 4.",
+    br_o3h: "Reviews groeien in de loop van de tijd", br_o3p: "Een stabiel reviewsysteem zorgt ervoor dat uw reputatie elke maand blijft groeien zonder extra inspanning van u.",
+    tl_h: "Wat er gebeurt na uw aanmelding", tl_sub: "Een typische klantervaring",
+    tl_d1: "Dag 1", tl_p1: "Gratis audit voltooid", tl_s1: "Wij analyseren uw profiel en sturen bevindingen",
+    tl_d2: "Dag 2–3", tl_p2: "Volledige optimalisatie live", tl_s2: "Categorieën, foto's, posts, beschrijvingen — alles gedaan",
+    tl_d3: "Dag 5–7", tl_p3: "U begint beweging te zien", tl_s3: "Rankingverschuivingen, meer profielweergaven, eerste extra oproepen",
+    tl_d4: "Week 2+", tl_p4: "Abonnement start (uw keuze)", tl_s4: "Alleen als de resultaten er zijn — u beslist",
+    g_kicker: "Risicovrije garantie",
+    g_h2: "Probeer gratis. Betaal pas<br>wanneer u <em>resultaten</em> ziet.",
+    g_sub: "Wij optimaliseren uw profiel een volledige week gratis. Geen resultaten? Wij gaan door zonder kosten totdat u ze wél ziet.",
+    seal_n: "100%", seal_t: "Resultaten<br>Garantie",
+    g_box_h: "U kunt niet verliezen.",
+    g_box_p: "Wij starten <strong>gratis</strong>. Als u in week 1 geen meer oproepen ziet, gaan wij door <strong>zonder kosten</strong> totdat u die wél ziet. <strong>Geen resultaten betekent geen betaling. Punt.</strong>",
+    g_btn: "Start mijn gratis week", g_micro: "Geen creditcard. Geen contract. Op elk moment opzegbaar.",
+    sv_tag: "Wat wij doen", sv_h: "Alles wat uw profiel nodig heeft om te ranken",
+    sv_sub: "Wij regelen uw volledige Google-aanwezigheid zodat u zich kunt focussen op uw bedrijf.",
+    s1h: "Profieloptimalisatie", s1p: "Elk onderdeel herbouwd precies zoals Google beloont.",
+    s2h: "Reviewstrategie", s2p: "Een eenvoudig systeem dat consistent meer 5-sterrenbeooordelingen oplevert.",
+    s3h: "Kaartpakranking", s3p: "Het lokale kaartpak vangt het grootste deel van de lokale klikken.",
+    s4h: "Fotooptimalisatie", s4p: "De juiste foto's op de juiste plaatsen maken een groot verschil.",
+    s5h: "Wekelijkse posts", s5p: "Houdt uw profiel fris en actief. Elke week voor u geschreven en gepubliceerd.",
+    s6h: "Maandelijkse rapporten", s6p: "Overzichtelijke rapporten met uw oproepen, weergaven en rankingvoortgang.",
+    pr_tag: "Hoe het werkt", pr_h: "Eenvoudig. Snel. Risicovrij.",
+    pr_sub: "Vier stappen en u bent live. Geen technische kennis nodig.",
+    p1h: "Gratis audit", p1p: "Wij analyseren uw huidige profiel en laten u precies zien wat u tegenhoudt.",
+    p2h: "Kort gesprek", p2p: "Een kort gesprek van 30 minuten om de bevindingen door te nemen.",
+    p3h: "Wij gaan aan de slag", p3p: "Uw profiel wordt volledig geoptimaliseerd in week 1, zonder kosten.",
+    p4h: "Eerst resultaten, dan betalen", p4p: "Uw abonnement begint pas de week dat u resultaten begint te zien.",
+    pr2_tag: "Prijzen", pr2_h: "Eenvoudige, transparante prijzen",
+    pr2_sub: "Alle abonnementen beginnen met een gratis week.",
+    pt1: "Starter", pt2: "Growth", pt3: "Scale",
+    p_mo: "/mnd", p_after: "na uw gratis week", p_free_note: "Eerste week altijd gratis", p_popular: "Meest gekozen",
+    roi1: "Genereert doorgaans +15–25 extra oproepen/maand",
+    roi2: "Ontworpen voor groeiende lokale bedrijven",
+    roi3: "Voor bedrijven die hun regio willen domineren",
+    pd1: "De essentials om uw profiel gevonden te laten worden.",
+    pd2: "Meer content, meer reviews, meer zichtbaarheid.",
+    pd3: "De volledige service. Voor bedrijven die domineren.",
+    pf1_1: "Volledige profieloptimalisatie", pf1_2: "Fotostrategie", pf1_3: "2 Google posts per maand",
+    pf1_4: "Maandelijks prestatierapport", pf1_5: "E-mailondersteuning",
+    pf2_1: "Alles uit Starter", pf2_2: "Wekelijkse Google posts", pf2_3: "Reviewgeneratiesysteem",
+    pf2_4: "Citatieopbouw", pf2_5: "Prioriteitsondersteuning",
+    pf3_1: "Alles uit Growth", pf3_2: "Concurrentmonitoring", pf3_3: "Geavanceerde zoekwoordtargeting",
+    pf3_4: "Maandelijks strategiegesprek", pf3_5: "Dedicated accountmanager",
+    rec_label: "Aanbevolen voor de meeste bedrijven",
+    p_start: "Start gratis week",
+    fc_h: "Niets te verliezen.<br>Alles te winnen.",
+    fc_p: "Start gratis. Betaal pas wanneer het werkt.",
+    fc_btn: "Claim mijn gratis week",
+    ft_c: "© 2026 NearbyFound. Alle rechten voorbehouden.", ft_p: "Privacybeleid", ft_t: "Voorwaarden",
+    lc_free_trial: "Gratis 7-daagse optimalisatie", lc_nocard: "Geen installatiekosten • Geen creditcard", lc_paylater: "Betaal pas na resultaten"
+  },
+  fr: {
+    ann_tag: "Nouveau", ann_text: "Essayez-nous gratuitement pendant 1 semaine. Vous ne payez que lorsque vous voyez de vrais résultats.",
+    nav_sv: "Services", nav_guar: "Notre garantie", nav_price: "Tarifs", nav_how: "Comment ça marche", nav_cta: "Semaine gratuite",
+    hero_badge: "Spécialistes Google Business Profile",
+    hero_h1: "Soyez trouvé en premier.<br>Plus d'appels. <em>Dès aujourd'hui.</em>",
+    hero_sub: "Nous optimisons votre Google Business Profile pour que les clients locaux vous trouvent avant vos concurrents.",
+    hero_pill: "1 semaine entièrement gratuite. Vous ne payez qu'une fois les résultats là.",
+    hero_cta1: "Démarrer ma semaine gratuite", hero_cta2: "Voir la garantie",
+    trust_strong: "Zéro risque. Zéro coût initial.", trust_sub: "Nous prouvons que ça fonctionne avant que vous dépensiez le moindre centime.",
+    chip1: "Plus d'appels en quelques jours", chip2: "Au-dessus de vos concurrents",
+    search_q: "plombier près de moi", pin_you: "Vous",
+    biz_you: "Votre Entreprise", biz_tag: "Optimisé", biz_open: "Ouvert",
+    comp1: "Concurrent A", comp2: "Concurrent B",
+    org_label: "Résultats organiques",
+    org_url1: "votreentreprise.fr", org_title1: "Votre Entreprise — Plombier local de confiance",
+    org_desc1: "Au service de votre région depuis des années. Réponse rapide, assuré, 5 étoiles.",
+    org_url2: "concurrent-a.fr", org_title2: "Concurrent A Services de plomberie",
+    org_desc2: "Services de plomberie généraux dans la région.",
+    form_h: "Démarrez votre semaine gratuite", form_sub: "Aucune carte requise. Nous nous mettons au travail.",
+    fl_biz: "Nom de l'entreprise", fp_biz: "ex. Plomberie Martin SARL",
+    fl_name: "Votre nom", fp_name: "Prénom et nom de famille",
+    fl_phone: "Téléphone", fl_email: "E-mail", fp_email: "vous@votreentreprise.fr",
+    fl_ind: "Secteur", form_btn: "Réclamer ma semaine gratuite", form_note: "Sans engagement. Nous vous recontactons sous 24 heures.",
+    s2: "Pour les premiers résultats", s3: "Garantie résultats", s4: "Hausse typique des leads",
+    br_tag: "Le système",
+    br_h: "Ce n'est pas de l'espoir SEO.<br>C'est un <em>résultat reproductible.</em>",
+    br_sub: "Chaque entreprise avec laquelle nous travaillons suit la même séquence éprouvée. Les résultats ne sont pas le fruit du hasard.",
+    br_o1h: "La visibilité monte vite", br_o1p: "Les signaux du profil sont mis à jour sous 24h. La plupart des clients voient un mouvement de classement dès la première semaine.",
+    br_o2h: "Les appels augmentent de façon mesurable", br_o2p: "Notre client moyen reçoit 15 à 40 appels entrants supplémentaires par mois d'ici la fin de la semaine 4.",
+    br_o3h: "Les avis se renforcent dans le temps", br_o3p: "Un système d'avis constant fait croître votre réputation chaque mois sans effort supplémentaire de votre part.",
+    tl_h: "Ce qui se passe après votre inscription", tl_sub: "Un parcours client typique",
+    tl_d1: "Jour 1", tl_p1: "Audit gratuit effectué", tl_s1: "Nous analysons votre profil et envoyons les résultats",
+    tl_d2: "Jours 2–3", tl_p2: "Optimisation complète en ligne", tl_s2: "Catégories, photos, posts, descriptions — tout fait",
+    tl_d3: "Jours 5–7", tl_p3: "Vous commencez à voir des changements", tl_s3: "Évolutions de classement, plus de vues, premiers appels supplémentaires",
+    tl_d4: "Semaine 2+", tl_p4: "L'abonnement démarre (votre choix)", tl_s4: "Seulement si les résultats sont là — vous décidez",
+    g_kicker: "Garantie sans risque",
+    g_h2: "Essayez gratuitement. Payez<br>seulement quand vous voyez des <em>résultats.</em>",
+    g_sub: "Nous optimisons votre profil pendant une semaine entière sans frais. Pas de résultats ? Nous continuons gratuitement.",
+    seal_n: "100%", seal_t: "Garantie<br>Résultats",
+    g_box_h: "Vous ne pouvez pas perdre.",
+    g_box_p: "Nous démarrons <strong>gratuitement</strong>. Si vous ne voyez pas de résultats en semaine 1, nous continuons <strong>sans frais</strong>. <strong>Pas de résultats signifie pas de paiement. Point final.</strong>",
+    g_btn: "Démarrer ma semaine gratuite", g_micro: "Aucune carte. Aucun contrat. Résiliable à tout moment.",
+    sv_tag: "Ce que nous faisons", sv_h: "Tout ce dont votre profil a besoin pour se classer",
+    sv_sub: "Nous gérons toute votre présence Google pour que vous puissiez vous concentrer sur votre activité.",
+    s1h: "Optimisation du profil", s1p: "Chaque section reconstruite exactement comme Google le récompense.",
+    s2h: "Stratégie d'avis", s2p: "Un système simple qui génère régulièrement plus d'avis 5 étoiles.",
+    s3h: "Classement local Maps", s3p: "Le pack local capte la majorité des clics locaux.",
+    s4h: "Optimisation photos", s4p: "Les bonnes photos aux bons endroits font une vraie différence.",
+    s5h: "Posts hebdomadaires", s5p: "Garde votre profil frais et actif. Rédigés et publiés pour vous chaque semaine.",
+    s6h: "Rapports mensuels", s6p: "Des rapports clairs montrant vos appels, vues et progression du classement.",
+    pr_tag: "Comment ça marche", pr_h: "Simple. Rapide. Sans risque.",
+    pr_sub: "Quatre étapes et c'est parti. Aucune compétence technique requise.",
+    p1h: "Audit gratuit", p1p: "Nous analysons votre profil actuel et vous montrons ce qui vous freine.",
+    p2h: "Appel rapide", p2p: "Un court appel de 30 minutes pour convenir du meilleur plan.",
+    p3h: "Nous nous mettons au travail", p3p: "Votre profil est entièrement optimisé pendant la semaine 1, sans frais.",
+    p4h: "Résultats d'abord, paiement ensuite", p4p: "Votre abonnement ne commence que la semaine où vous voyez des résultats.",
+    pr2_tag: "Tarifs", pr2_h: "Des tarifs simples et transparents",
+    pr2_sub: "Tous les plans démarrent par une semaine gratuite.",
+    pt1: "Starter", pt2: "Growth", pt3: "Scale",
+    p_mo: "/mois", p_after: "après votre semaine gratuite", p_free_note: "Première semaine toujours gratuite", p_popular: "Plus populaire",
+    roi1: "Génère généralement +15–25 appels supplémentaires/mois",
+    roi2: "Conçu pour les entreprises locales en croissance",
+    roi3: "Pour les entreprises qui veulent dominer leur secteur",
+    pd1: "L'essentiel pour que votre profil soit trouvé et génère des appels.",
+    pd2: "Plus de contenu, plus d'avis, plus de visibilité.",
+    pd3: "Le service complet. Pour les entreprises qui veulent dominer.",
+    pf1_1: "Optimisation complète du profil", pf1_2: "Stratégie photo", pf1_3: "2 posts Google par mois",
+    pf1_4: "Rapport mensuel de performance", pf1_5: "Support par e-mail",
+    pf2_1: "Tout le plan Starter", pf2_2: "Posts Google hebdomadaires", pf2_3: "Système de génération d'avis",
+    pf2_4: "Construction de citations", pf2_5: "Support prioritaire",
+    pf3_1: "Tout le plan Growth", pf3_2: "Surveillance de la concurrence", pf3_3: "Ciblage avancé de mots-clés",
+    pf3_4: "Appel stratégique mensuel", pf3_5: "Chargé de compte dédié",
+    rec_label: "Recommandé pour la plupart des entreprises",
+    p_start: "Démarrer semaine gratuite",
+    fc_h: "Rien à perdre.<br>Tout à gagner.",
+    fc_p: "Commencez gratuitement. Payez seulement quand ça marche.",
+    fc_btn: "Réclamer ma semaine gratuite",
+    ft_c: "© 2026 NearbyFound. Tous droits réservés.", ft_p: "Confidentialité", ft_t: "Conditions",
+    lc_free_trial: "Essai gratuit 7 jours", lc_nocard: "Frais d'installation • Carte non requise", lc_paylater: "Payez après résultats"
   }
-},4200);
-
-/* ── CURRENCY per language ── */
-const CURR={en:'$',nl:'€',fr:'€'};
-
-const T={
-en:{
-  ann_tag:"New",ann_text:"Try us free for 1 week. You only pay when you see real results.",
-  nav_sv:"Services",nav_guar:"Our Guarantee",nav_price:"Pricing",nav_how:"How It Works",nav_cta:"Start Free Week",
-  hero_badge:"Google Business Profile Specialists",
-  hero_h1:"Get Found First.<br>Get More Calls. <em>Today.</em>",
-  hero_sub:"We optimise your Google Business Profile so local customers find you before your competitors and choose you first.",
-  hero_pill:"1 week completely free. Pay only once you see results.",
-  hero_cta1:"Start My Free Week",hero_cta2:"See the Guarantee",
-  trust_strong:"Zero risk. Zero upfront cost.",trust_sub:"We prove it works before you spend a penny.",
-  chip1:"More calls within days",chip2:"Ranking above competitors",
-  search_q:"plumber near me",pin_you:"You",
-  biz_you:"Your Business",biz_tag:"Optimised",biz_open:"Open now",
-  comp1:"Competitor A",comp2:"Competitor B",
-  org_label:"Organic Results",
-  org_url1:"yourbusiness.com",org_title1:"Your Business — Trusted Local Plumber",
-  org_desc1:"Serving your area for years. Fast response, fully insured, 5-star rated.",
-  org_url2:"competitor-a.com",org_title2:"Competitor A Plumbing Services",
-  org_desc2:"General plumbing services in the local area.",
-  form_h:"Start Your Free Week",form_sub:"No card needed. We get to work, you watch the results come in.",
-  fl_biz:"Business Name",fp_biz:"e.g. Smith's Plumbing Ltd",
-  fl_name:"Your Name",fp_name:"First and last name",
-  fl_phone:"Phone",fl_email:"Email",fp_email:"you@yourbusiness.com",
-  fl_ind:"Industry",ind0:"Select your industry...",
-  ind1:"Trades & Construction",ind2:"Health & Beauty",ind3:"Food & Hospitality",
-  ind4:"Retail",ind5:"Professional Services",ind6:"Other",
-  form_btn:"Claim My Free Week",form_note:"No obligation. We'll be in touch within 24 hours.",
-  lc_calls:" calls generated this week",lc_profiles:" profiles live right now",lc_rank:"% reach top 3 in week 1",
-  s2:"To See First Results",s3:"Results Guarantee",s4:"Typical Lead Increase",
-  br_tag:"The System",
-  br_h:"This isn't SEO hope.<br>It's a <em>repeatable result.</em>",
-  br_sub:"Every business we work with goes through the same proven sequence. The outcomes aren't luck — they're the output of a process built around exactly how Google's local algorithm works.",
-  br_o1h:"Visibility rises fast",br_o1p:"Profile signals are updated within 24 hours. Most clients see movement in ranking within the first week.",
-  br_o2h:"Calls increase measurably",br_o2p:"Our average client sees 15–40 additional inbound calls per month by the end of week 4.",
-  br_o3h:"Reviews compound over time",br_o3p:"A steady review system means your reputation keeps growing every single month without extra effort from you.",
-  tl_h:"What happens after you sign up",tl_sub:"A typical client journey",
-  tl_d1:"Day 1",tl_p1:"Free audit completed",tl_s1:"We review your full profile & send findings",
-  tl_d2:"Day 2–3",tl_p2:"Full optimisation goes live",tl_s2:"Categories, photos, posts, descriptions — all done",
-  tl_d3:"Day 5–7",tl_p3:"You start seeing movement",tl_s3:"Ranking shifts, more profile views, first extra calls",
-  tl_d4:"Week 2+",tl_p4:"Subscription starts (your choice)",tl_s4:"Only if results are there — you decide",
-  g_kicker:"Risk-Free Guarantee",
-  g_h2:"Try It Free. Pay Only<br>When You See <em>Results.</em>",
-  g_sub:"We optimise your profile for a full week at zero cost. No results after that? We keep going, free of charge, until you do. You only pay once it's working.",
-  seal_n:"100%",seal_t:"Results<br>Guarantee",
-  g_box_h:"You cannot lose.",
-  g_box_p:"We start for <strong>free</strong>. If you don't see more calls, more visibility, and a better ranking in week 1, we keep working at <strong>no charge</strong> until you do. Your subscription only starts the week your results arrive. <strong>No results means no payment. Full stop.</strong>",
-  g_btn:"Start My Free Week",g_micro:"No credit card. No contract. Cancel anytime.",
-  sv_tag:"What We Do",sv_h:"Everything Your Profile Needs to Rank",
-  sv_sub:"We take care of your entire Google presence so you can focus on running your business.",
-  s1h:"Profile Optimisation",s1p:"Every section rebuilt to exactly what Google rewards. Categories, descriptions, service areas and attributes all dialled in.",
-  s2h:"Review Strategy",s2p:"A simple system that brings in more 5-star reviews consistently, building your reputation while you focus on the job.",
-  s3h:"Map Pack Ranking",s3p:"The local map pack captures the majority of local clicks. We work to place you in the top 3 using proven local SEO methods.",
-  s4h:"Photo Optimisation",s4p:"The right photos in the right places make a real difference. We handle geotagging, scheduling, and presentation.",
-  s5h:"Weekly Posts",s5p:"Keeps your profile fresh and active. Written and published for you every week without you lifting a finger.",
-  s6h:"Monthly Reports",s6p:"Straightforward reports showing your calls, views, and ranking progress each month. No jargon, just the numbers that matter.",
-  pr_tag:"How It Works",pr_h:"Simple. Fast. Risk-Free.",
-  pr_sub:"Four steps and you're live. No technical knowledge needed from your side.",
-  p1h:"Free Audit",p1p:"We review your current profile and show you exactly what's holding you back. No cost, no strings attached.",
-  p2h:"Quick Call",p2p:"A short 30-minute call to go through the findings and agree on the best plan for your business.",
-  p3h:"We Get to Work",p3p:"Your profile is fully optimised during week 1 at no charge. We handle everything from start to finish.",
-  p4h:"Results First, Then Pay",p4p:"Your subscription only begins the week you start seeing results. Not a day before.",
-  pr2_tag:"Pricing",pr2_h:"Simple, Transparent Pricing",
-  pr2_sub:"All plans start with a free week. Pick the level that suits your goals.",
-  pt1:"Starter",pt2:"Growth",pt3:"Scale",
-  p_mo:"/mo",p_after:"after your free week",p_free_note:"First week always free",p_popular:"Most Popular",
-  roi1:"Typically generates +15–25 extra calls/month",
-  roi2:"Designed for growing local businesses",
-  roi3:"For businesses aiming to dominate their area",
-  pd1:"The essentials to get your profile found and generating calls. Perfect for getting started.",
-  pd2:"More content, more reviews, more visibility. For businesses serious about being the go-to in their area.",
-  pd3:"The full service. For businesses that want to dominate their local area and stay there.",
-  pf1_1:"Full profile optimisation",pf1_2:"Photo strategy",pf1_3:"2 Google posts per month",
-  pf1_4:"Monthly performance report",pf1_5:"Email support",
-  pf2_1:"Everything in Starter",pf2_2:"Weekly Google posts",pf2_3:"Review generation system",
-  pf2_4:"Citation building",pf2_5:"Priority support",
-  pf3_1:"Everything in Growth",pf3_2:"Competitor monitoring",pf3_3:"Advanced keyword targeting",
-  pf3_4:"Monthly strategy call",pf3_5:"Dedicated account manager",
-  rec_label:"Recommended for most businesses",
-  p_start:"Start Free Week",
-  fc_h:"Nothing to Lose.<br>Everything to Gain.",
-  fc_p:"Start free. Pay only when it's working. Your competitors aren't waiting.",
-  fc_btn:"Claim My Free Week",
-  ft_c:"© 2026 NearbyFound. All rights reserved.",ft_p:"Privacy Policy",ft_t:"Terms"
-},
-nl:{
-  ann_tag:"Nieuw",ann_text:"Probeer ons 1 week gratis. U betaalt pas wanneer u echte resultaten ziet.",
-  nav_sv:"Diensten",nav_guar:"Onze garantie",nav_price:"Prijzen",nav_how:"Hoe het werkt",nav_cta:"Start gratis week",
-  hero_badge:"Google Business Profile Specialisten",
-  hero_h1:"Word als eerste gevonden.<br>Meer oproepen. <em>Vandaag nog.</em>",
-  hero_sub:"Wij optimaliseren uw Google Business Profile zodat lokale klanten u vinden vóór uw concurrenten en voor u kiezen.",
-  hero_pill:"1 week volledig gratis. U betaalt pas zodra u resultaten ziet.",
-  hero_cta1:"Start mijn gratis week",hero_cta2:"Bekijk de garantie",
-  trust_strong:"Nul risico. Nul kosten vooraf.",trust_sub:"Wij bewijzen dat het werkt voordat u een cent uitgeeft.",
-  chip1:"Meer oproepen binnen dagen",chip2:"Hogere positie dan concurrenten",
-  search_q:"loodgieter bij mij in de buurt",pin_you:"U",
-  biz_you:"Uw bedrijf",biz_tag:"Geoptimaliseerd",biz_open:"Nu open",
-  comp1:"Concurrent A",comp2:"Concurrent B",
-  org_label:"Organische resultaten",
-  org_url1:"uwbedrijf.nl",org_title1:"Uw Bedrijf — Betrouwbare lokale loodgieter",
-  org_desc1:"Al jaren actief in uw regio. Snelle reactie, volledig verzekerd, 5-sterren.",
-  org_url2:"concurrent-a.nl",org_title2:"Concurrent A Loodgietersdiensten",
-  org_desc2:"Algemene loodgietersdiensten in de regio.",
-  form_h:"Start uw gratis week",form_sub:"Geen creditcard nodig. Wij gaan aan de slag, u ziet de resultaten binnenkomen.",
-  fl_biz:"Bedrijfsnaam",fp_biz:"bijv. Loodgietersbedrijf Jansen",
-  fl_name:"Uw naam",fp_name:"Voor- en achternaam",
-  fl_phone:"Telefoon",fl_email:"E-mail",fp_email:"u@uwbedrijf.nl",
-  fl_ind:"Branche",ind0:"Selecteer uw branche...",
-  ind1:"Bouw & Installatie",ind2:"Gezondheid & Schoonheid",ind3:"Horeca",
-  ind4:"Retail",ind5:"Zakelijke dienstverlening",ind6:"Anders",
-  form_btn:"Claim mijn gratis week",form_note:"Geen verplichtingen. Wij nemen binnen 24 uur contact op.",
-  lc_calls:" oproepen gegenereerd deze week",lc_profiles:" profielen nu live",lc_rank:"% haalt top 3 in week 1",
-  s2:"Voor eerste resultaten",s3:"Resultatengarantie",s4:"Typische leadstijging",
-  br_tag:"Het systeem",
-  br_h:"Dit is geen SEO-hoop.<br>Dit is een <em>herhaalbaar resultaat.</em>",
-  br_sub:"Elk bedrijf waarmee we werken doorloopt dezelfde bewezen volgorde. De resultaten zijn geen toeval — ze zijn de output van een proces gebouwd rond de werking van Google's lokale algoritme.",
-  br_o1h:"Zichtbaarheid stijgt snel",br_o1p:"Profielsignalen worden binnen 24 uur bijgewerkt. De meeste klanten zien rankingbeweging binnen de eerste week.",
-  br_o2h:"Oproepen nemen meetbaar toe",br_o2p:"Onze gemiddelde klant ziet 15–40 extra inkomende oproepen per maand aan het einde van week 4.",
-  br_o3h:"Reviews groeien in de loop van de tijd",br_o3p:"Een stabiel reviewsysteem zorgt ervoor dat uw reputatie elke maand blijft groeien zonder extra inspanning van u.",
-  tl_h:"Wat er gebeurt na uw aanmelding",tl_sub:"Een typische klantervaring",
-  tl_d1:"Dag 1",tl_p1:"Gratis audit voltooid",tl_s1:"Wij analyseren uw profiel en sturen bevindingen",
-  tl_d2:"Dag 2–3",tl_p2:"Volledige optimalisatie live",tl_s2:"Categorieën, foto's, posts, beschrijvingen — alles gedaan",
-  tl_d3:"Dag 5–7",tl_p3:"U begint beweging te zien",tl_s3:"Rankingverschuivingen, meer profielweergaven, eerste extra oproepen",
-  tl_d4:"Week 2+",tl_p4:"Abonnement start (uw keuze)",tl_s4:"Alleen als de resultaten er zijn — u beslist",
-  g_kicker:"Risicovrije garantie",
-  g_h2:"Probeer gratis. Betaal pas<br>wanneer u <em>resultaten</em> ziet.",
-  g_sub:"Wij optimaliseren uw profiel een volledige week gratis. Geen resultaten? Wij gaan door zonder kosten totdat u ze wél ziet.",
-  seal_n:"100%",seal_t:"Resultaten<br>Garantie",
-  g_box_h:"U kunt niet verliezen.",
-  g_box_p:"Wij starten <strong>gratis</strong>. Als u in week 1 geen meer oproepen ziet, gaan wij door <strong>zonder kosten</strong> totdat u die wél ziet. <strong>Geen resultaten betekent geen betaling. Punt.</strong>",
-  g_btn:"Start mijn gratis week",g_micro:"Geen creditcard. Geen contract. Op elk moment opzegbaar.",
-  sv_tag:"Wat wij doen",sv_h:"Alles wat uw profiel nodig heeft om te ranken",
-  sv_sub:"Wij regelen uw volledige Google-aanwezigheid zodat u zich kunt focussen op uw bedrijf.",
-  s1h:"Profieloptimalisatie",s1p:"Elk onderdeel herbouwd precies zoals Google beloont.",
-  s2h:"Reviewstrategie",s2p:"Een eenvoudig systeem dat consistent meer 5-sterrenbeooordelingen oplevert.",
-  s3h:"Kaartpakranking",s3p:"Het lokale kaartpak vangt het grootste deel van de lokale klikken.",
-  s4h:"Fotooptimalisatie",s4p:"De juiste foto's op de juiste plaatsen maken een groot verschil.",
-  s5h:"Wekelijkse posts",s5p:"Houdt uw profiel fris en actief. Elke week voor u geschreven en gepubliceerd.",
-  s6h:"Maandelijkse rapporten",s6p:"Overzichtelijke rapporten met uw oproepen, weergaven en rankingvoortgang.",
-  pr_tag:"Hoe het werkt",pr_h:"Eenvoudig. Snel. Risicovrij.",
-  pr_sub:"Vier stappen en u bent live. Geen technische kennis nodig.",
-  p1h:"Gratis audit",p1p:"Wij analyseren uw huidige profiel en laten u precies zien wat u tegenhoudt.",
-  p2h:"Kort gesprek",p2p:"Een kort gesprek van 30 minuten om de bevindingen door te nemen.",
-  p3h:"Wij gaan aan de slag",p3p:"Uw profiel wordt volledig geoptimaliseerd in week 1, zonder kosten.",
-  p4h:"Eerst resultaten, dan betalen",p4p:"Uw abonnement begint pas de week dat u resultaten begint te zien.",
-  pr2_tag:"Prijzen",pr2_h:"Eenvoudige, transparante prijzen",
-  pr2_sub:"Alle abonnementen beginnen met een gratis week.",
-  pt1:"Starter",pt2:"Growth",pt3:"Scale",
-  p_mo:"/mnd",p_after:"na uw gratis week",p_free_note:"Eerste week altijd gratis",p_popular:"Meest gekozen",
-  roi1:"Genereert doorgaans +15–25 extra oproepen/maand",
-  roi2:"Ontworpen voor groeiende lokale bedrijven",
-  roi3:"Voor bedrijven die hun regio willen domineren",
-  pd1:"De essentials om uw profiel gevonden te laten worden.",
-  pd2:"Meer content, meer reviews, meer zichtbaarheid.",
-  pd3:"De volledige service. Voor bedrijven die domineren.",
-  pf1_1:"Volledige profieloptimalisatie",pf1_2:"Fotostrategie",pf1_3:"2 Google posts per maand",
-  pf1_4:"Maandelijks prestatierapport",pf1_5:"E-mailondersteuning",
-  pf2_1:"Alles uit Starter",pf2_2:"Wekelijkse Google posts",pf2_3:"Reviewgeneratiesysteem",
-  pf2_4:"Citatieopbouw",pf2_5:"Prioriteitsondersteuning",
-  pf3_1:"Alles uit Growth",pf3_2:"Concurrentmonitoring",pf3_3:"Geavanceerde zoekwoordtargeting",
-  pf3_4:"Maandelijks strategiegesprek",pf3_5:"Dedicated accountmanager",
-  rec_label:"Aanbevolen voor de meeste bedrijven",
-  p_start:"Start gratis week",
-  fc_h:"Niets te verliezen.<br>Alles te winnen.",
-  fc_p:"Start gratis. Betaal pas wanneer het werkt.",
-  fc_btn:"Claim mijn gratis week",
-  ft_c:"© 2026 NearbyFound. Alle rechten voorbehouden.",ft_p:"Privacybeleid",ft_t:"Voorwaarden"
-},
-fr:{
-  ann_tag:"Nouveau",ann_text:"Essayez-nous gratuitement pendant 1 semaine. Vous ne payez que lorsque vous voyez de vrais résultats.",
-  nav_sv:"Services",nav_guar:"Notre garantie",nav_price:"Tarifs",nav_how:"Comment ça marche",nav_cta:"Semaine gratuite",
-  hero_badge:"Spécialistes Google Business Profile",
-  hero_h1:"Soyez trouvé en premier.<br>Plus d'appels. <em>Dès aujourd'hui.</em>",
-  hero_sub:"Nous optimisons votre Google Business Profile pour que les clients locaux vous trouvent avant vos concurrents.",
-  hero_pill:"1 semaine entièrement gratuite. Vous ne payez qu'une fois les résultats là.",
-  hero_cta1:"Démarrer ma semaine gratuite",hero_cta2:"Voir la garantie",
-  trust_strong:"Zéro risque. Zéro coût initial.",trust_sub:"Nous prouvons que ça fonctionne avant que vous dépensiez le moindre centime.",
-  chip1:"Plus d'appels en quelques jours",chip2:"Au-dessus de vos concurrents",
-  search_q:"plombier près de moi",pin_you:"Vous",
-  biz_you:"Votre Entreprise",biz_tag:"Optimisé",biz_open:"Ouvert",
-  comp1:"Concurrent A",comp2:"Concurrent B",
-  org_label:"Résultats organiques",
-  org_url1:"votreentreprise.fr",org_title1:"Votre Entreprise — Plombier local de confiance",
-  org_desc1:"Au service de votre région depuis des années. Réponse rapide, assuré, 5 étoiles.",
-  org_url2:"concurrent-a.fr",org_title2:"Concurrent A Services de plomberie",
-  org_desc2:"Services de plomberie généraux dans la région.",
-  form_h:"Démarrez votre semaine gratuite",form_sub:"Aucune carte requise. Nous nous mettons au travail.",
-  fl_biz:"Nom de l'entreprise",fp_biz:"ex. Plomberie Martin SARL",
-  fl_name:"Votre nom",fp_name:"Prénom et nom de famille",
-  fl_phone:"Téléphone",fl_email:"E-mail",fp_email:"vous@votreentreprise.fr",
-  fl_ind:"Secteur",ind0:"Sélectionnez votre secteur...",
-  ind1:"Bâtiment & Artisanat",ind2:"Santé & Beauté",ind3:"Restauration",
-  ind4:"Commerce",ind5:"Services professionnels",ind6:"Autre",
-  form_btn:"Réclamer ma semaine gratuite",form_note:"Sans engagement. Nous vous recontactons sous 24 heures.",
-  lc_calls:" appels générés cette semaine",lc_profiles:" profils actifs en ce moment",lc_rank:"% atteignent le top 3 en semaine 1",
-  s2:"Pour les premiers résultats",s3:"Garantie résultats",s4:"Hausse typique des leads",
-  br_tag:"Le système",
-  br_h:"Ce n'est pas de l'espoir SEO.<br>C'est un <em>résultat reproductible.</em>",
-  br_sub:"Chaque entreprise avec laquelle nous travaillons suit la même séquence éprouvée. Les résultats ne sont pas le fruit du hasard.",
-  br_o1h:"La visibilité monte vite",br_o1p:"Les signaux du profil sont mis à jour sous 24h. La plupart des clients voient un mouvement de classement dès la première semaine.",
-  br_o2h:"Les appels augmentent de façon mesurable",br_o2p:"Notre client moyen reçoit 15 à 40 appels entrants supplémentaires par mois d'ici la fin de la semaine 4.",
-  br_o3h:"Les avis se renforcent dans le temps",br_o3p:"Un système d'avis constant fait croître votre réputation chaque mois sans effort supplémentaire de votre part.",
-  tl_h:"Ce qui se passe après votre inscription",tl_sub:"Un parcours client typique",
-  tl_d1:"Jour 1",tl_p1:"Audit gratuit effectué",tl_s1:"Nous analysons votre profil et envoyons les résultats",
-  tl_d2:"Jours 2–3",tl_p2:"Optimisation complète en ligne",tl_s2:"Catégories, photos, posts, descriptions — tout fait",
-  tl_d3:"Jours 5–7",tl_p3:"Vous commencez à voir des changements",tl_s3:"Évolutions de classement, plus de vues, premiers appels supplémentaires",
-  tl_d4:"Semaine 2+",tl_p4:"L'abonnement démarre (votre choix)",tl_s4:"Seulement si les résultats sont là — vous décidez",
-  g_kicker:"Garantie sans risque",
-  g_h2:"Essayez gratuitement. Payez<br>seulement quand vous voyez des <em>résultats.</em>",
-  g_sub:"Nous optimisons votre profil pendant une semaine entière sans frais. Pas de résultats ? Nous continuons gratuitement.",
-  seal_n:"100%",seal_t:"Garantie<br>Résultats",
-  g_box_h:"Vous ne pouvez pas perdre.",
-  g_box_p:"Nous démarrons <strong>gratuitement</strong>. Si vous ne voyez pas de résultats en semaine 1, nous continuons <strong>sans frais</strong>. <strong>Pas de résultats signifie pas de paiement. Point final.</strong>",
-  g_btn:"Démarrer ma semaine gratuite",g_micro:"Aucune carte. Aucun contrat. Résiliable à tout moment.",
-  sv_tag:"Ce que nous faisons",sv_h:"Tout ce dont votre profil a besoin pour se classer",
-  sv_sub:"Nous gérons toute votre présence Google pour que vous puissiez vous concentrer sur votre activité.",
-  s1h:"Optimisation du profil",s1p:"Chaque section reconstruite exactement comme Google le récompense.",
-  s2h:"Stratégie d'avis",s2p:"Un système simple qui génère régulièrement plus d'avis 5 étoiles.",
-  s3h:"Classement local Maps",s3p:"Le pack local capte la majorité des clics locaux.",
-  s4h:"Optimisation photos",s4p:"Les bonnes photos aux bons endroits font une vraie différence.",
-  s5h:"Posts hebdomadaires",s5p:"Garde votre profil frais et actif. Rédigés et publiés pour vous chaque semaine.",
-  s6h:"Rapports mensuels",s6p:"Des rapports clairs montrant vos appels, vues et progression du classement.",
-  pr_tag:"Comment ça marche",pr_h:"Simple. Rapide. Sans risque.",
-  pr_sub:"Quatre étapes et c'est parti. Aucune compétence technique requise.",
-  p1h:"Audit gratuit",p1p:"Nous analysons votre profil actuel et vous montrons ce qui vous freine.",
-  p2h:"Appel rapide",p2p:"Un court appel de 30 minutes pour convenir du meilleur plan.",
-  p3h:"Nous nous mettons au travail",p3p:"Votre profil est entièrement optimisé pendant la semaine 1, sans frais.",
-  p4h:"Résultats d'abord, paiement ensuite",p4p:"Votre abonnement ne commence que la semaine où vous voyez des résultats.",
-  pr2_tag:"Tarifs",pr2_h:"Des tarifs simples et transparents",
-  pr2_sub:"Tous les plans démarrent par une semaine gratuite.",
-  pt1:"Starter",pt2:"Growth",pt3:"Scale",
-  p_mo:"/mois",p_after:"après votre semaine gratuite",p_free_note:"Première semaine toujours gratuite",p_popular:"Plus populaire",
-  roi1:"Génère généralement +15–25 appels supplémentaires/mois",
-  roi2:"Conçu pour les entreprises locales en croissance",
-  roi3:"Pour les entreprises qui veulent dominer leur secteur",
-  pd1:"L'essentiel pour que votre profil soit trouvé et génère des appels.",
-  pd2:"Plus de contenu, plus d'avis, plus de visibilité.",
-  pd3:"Le service complet. Pour les entreprises qui veulent dominer.",
-  pf1_1:"Optimisation complète du profil",pf1_2:"Stratégie photo",pf1_3:"2 posts Google par mois",
-  pf1_4:"Rapport mensuel de performance",pf1_5:"Support par e-mail",
-  pf2_1:"Tout le plan Starter",pf2_2:"Posts Google hebdomadaires",pf2_3:"Système de génération d'avis",
-  pf2_4:"Construction de citations",pf2_5:"Support prioritaire",
-  pf3_1:"Tout le plan Growth",pf3_2:"Surveillance de la concurrence",pf3_3:"Ciblage avancé de mots-clés",
-  pf3_4:"Appel stratégique mensuel",pf3_5:"Chargé de compte dédié",
-  rec_label:"Recommandé pour la plupart des entreprises",
-  p_start:"Démarrer semaine gratuite",
-  fc_h:"Rien à perdre.<br>Tout à gagner.",
-  fc_p:"Commencez gratuitement. Payez seulement quand ça marche.",
-  fc_btn:"Réclamer ma semaine gratuite",
-  ft_c:"© 2026 NearbyFound. Tous droits réservés.",ft_p:"Confidentialité",ft_t:"Conditions"
-}
 };
 
-let currentLang='en';
-function setLang(lang){
-  currentLang=lang;
-  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('active',b.textContent.trim().toLowerCase()===lang));
-  const t=T[lang];
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.dataset.i18n;
-    if(t[k]!==undefined)el.innerHTML=t[k];
-  });
-  document.querySelectorAll('[data-ph]').forEach(el=>{
-    const k=el.dataset.ph;
-    if(t[k]!==undefined)el.placeholder=t[k];
-  });
-  const sym=CURR[lang];
-  document.querySelectorAll('.currency-sym').forEach(el=>el.textContent=sym);
-  document.documentElement.lang=lang;
+let currentLang = 'en';
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lb').forEach(b => b.classList.toggle('active', b.textContent.trim().toLowerCase() === lang));
+  const t = T[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; if (t[k] !== undefined) el.innerHTML = t[k]; });
+  document.querySelectorAll('[data-ph]').forEach(el => { const k = el.dataset.ph; if (t[k] !== undefined) el.placeholder = t[k]; });
+  const sym = CURR[lang];
+  document.querySelectorAll('.currency-sym').forEach(el => el.textContent = sym);
+  document.documentElement.lang = lang;
 }
+setLang('en');
 </script>
 </body>
 </html>
