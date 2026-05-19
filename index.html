@@ -305,7 +305,7 @@ footer{background:var(--text);color:rgba(255,255,255,.4);padding:32px 5%;display
 <script>
 // EmailJS config - YOUR ACTUAL KEYS
 const EMAILJS_PUBLIC_KEY = "meLShyln7WMpGCBse";
-const EMAILJS_SERVICE_ID = "nearbyfound";  // ← Change only this
+const EMAILJS_SERVICE_ID  = "nearbyfound";
 const EMAILJS_TEMPLATE_ID = "template_7t6ootx";      // Your lead notification template
 const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_d9g1mq9";  // Your auto-reply template for customers
 
@@ -355,25 +355,20 @@ async function handleFormSubmit(event) {
     // Send lead notification to YOU
     const response1 = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, leadData);
     
-    if (response1.status === 200) {
-      // Try to send auto-reply, but don't fail if it doesn't work
-      try {
-        const autoReplyData = {
-          business_name: leadData.business_name,
-          name: leadData.name,
-          phone: leadData.phone,
-          email: leadData.email,
-          industry: leadData.industry,
-          to_email: leadData.email,
-          subject: `Thank you ${leadData.name}! Your free week with NearbyFound starts now`
-        };
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE_ID, autoReplyData);
-      } catch (autoError) {
-        // Auto-reply failed, but lead notification worked - still show success
-        console.log('Auto-reply failed, but lead notification sent:', autoError);
-      }
-      
-      showToast('🎉 Thank you! We\'ll be in touch within 24 hours.', false);
+    // Send auto-reply thank you to the CUSTOMER
+    const autoReplyData = {
+      business_name: leadData.business_name,
+      name: leadData.name,
+      phone: leadData.phone,
+      email: leadData.email,
+      industry: leadData.industry,
+      to_email: leadData.email,
+      subject: `Thank you ${leadData.name}! Your free week with NearbyFound starts now`
+    };
+    const response2 = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE_ID, autoReplyData);
+    
+    if (response1.status === 200 && response2.status === 200) {
+      showToast('🎉 Thank you! Check your email - we\'ll be in touch within 24 hours.', false);
       form.reset();
     } else {
       throw new Error('Unexpected response');
